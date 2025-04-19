@@ -1,10 +1,29 @@
 
 import { useEffect, useRef } from "react";
 import { FuturisticButton } from "./ui/futuristic-button";
+import { motion, useAnimation, useScroll, useTransform } from "framer-motion";
 
 const HeroSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const floatingElementsRef = useRef<HTMLDivElement>(null);
+  const textControls = useAnimation();
+  const { scrollYProgress } = useScroll();
+  
+  const headerOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+  const headerY = useTransform(scrollYProgress, [0, 0.2], [0, -50]);
+
+  // Animate text on load
+  useEffect(() => {
+    const animateText = async () => {
+      await textControls.start({
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.8, ease: "easeOut" }
+      });
+    };
+    
+    animateText();
+  }, [textControls]);
 
   // Parallax effect for floating elements
   useEffect(() => {
@@ -46,42 +65,246 @@ const HeroSection = () => {
       {/* Background gradient */}
       <div className="absolute inset-0 gradient-background"></div>
       
-      {/* Floating elements */}
+      {/* Floating elements with enhanced 3D effects */}
       <div ref={floatingElementsRef} className="absolute inset-0 pointer-events-none">
         {/* Data visualization elements that float and glow */}
-        <div data-depth="2" className="absolute top-1/4 left-1/4 w-32 h-32 rounded-full bg-futuristic-purple/10 backdrop-blur-sm animate-float"></div>
-        <div data-depth="1.5" className="absolute top-1/3 right-1/4 w-20 h-20 rounded-full bg-futuristic-blue/10 backdrop-blur-sm animate-float" style={{ animationDelay: '-2s' }}></div>
-        <div data-depth="1" className="absolute bottom-1/4 left-1/3 w-16 h-16 rounded-full bg-futuristic-purple/20 backdrop-blur-sm animate-float" style={{ animationDelay: '-4s' }}></div>
-        <div data-depth="2.5" className="absolute top-2/3 right-1/3 w-24 h-24 rounded-full bg-futuristic-blue/20 backdrop-blur-sm animate-pulse-glow" style={{ animationDelay: '-1s' }}></div>
+        <motion.div 
+          data-depth="2" 
+          className="absolute top-1/4 left-1/4 w-32 h-32 rounded-full bg-futuristic-purple/10 backdrop-blur-sm"
+          animate={{
+            y: [0, -20, 0],
+            boxShadow: [
+              "0 0 20px rgba(155, 135, 245, 0.3)",
+              "0 0 30px rgba(155, 135, 245, 0.5)",
+              "0 0 20px rgba(155, 135, 245, 0.3)"
+            ]
+          }}
+          transition={{ 
+            duration: 6, 
+            repeat: Infinity, 
+            ease: "easeInOut" 
+          }}
+        />
         
-        {/* Data visualization lines */}
-        <div data-depth="1.8" className="absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-futuristic-purple/30 to-transparent"></div>
-        <div data-depth="1.2" className="absolute top-[45%] left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-futuristic-blue/20 to-transparent"></div>
-        <div data-depth="1.5" className="absolute top-[55%] left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-futuristic-purple/20 to-transparent"></div>
+        <motion.div 
+          data-depth="1.5" 
+          className="absolute top-1/3 right-1/4 w-20 h-20 rounded-full bg-futuristic-blue/10 backdrop-blur-sm"
+          animate={{
+            y: [0, -15, 0],
+            boxShadow: [
+              "0 0 15px rgba(89, 169, 245, 0.3)",
+              "0 0 25px rgba(89, 169, 245, 0.5)",
+              "0 0 15px rgba(89, 169, 245, 0.3)"
+            ]
+          }}
+          transition={{ 
+            duration: 5, 
+            repeat: Infinity, 
+            ease: "easeInOut",
+            delay: 1
+          }}
+        />
+        
+        <motion.div 
+          data-depth="1" 
+          className="absolute bottom-1/4 left-1/3 w-16 h-16 rounded-full bg-futuristic-purple/20 backdrop-blur-sm"
+          animate={{
+            y: [0, -10, 0],
+            boxShadow: [
+              "0 0 10px rgba(155, 135, 245, 0.4)",
+              "0 0 20px rgba(155, 135, 245, 0.6)",
+              "0 0 10px rgba(155, 135, 245, 0.4)"
+            ]
+          }}
+          transition={{ 
+            duration: 4, 
+            repeat: Infinity, 
+            ease: "easeInOut",
+            delay: 2 
+          }}
+        />
+        
+        <motion.div 
+          data-depth="2.5" 
+          className="absolute top-2/3 right-1/3 w-24 h-24 rounded-full bg-futuristic-blue/20 backdrop-blur-sm"
+          animate={{
+            opacity: [0.5, 0.8, 0.5],
+            boxShadow: [
+              "0 0 15px rgba(89, 169, 245, 0.3)",
+              "0 0 25px rgba(89, 169, 245, 0.5)",
+              "0 0 15px rgba(89, 169, 245, 0.3)"
+            ]
+          }}
+          transition={{ 
+            duration: 3, 
+            repeat: Infinity, 
+            ease: "easeInOut",
+            delay: 1 
+          }}
+        />
+        
+        {/* 3D Data visualization lines */}
+        <motion.div 
+          data-depth="1.8" 
+          className="absolute top-1/2 left-0 w-full h-[1px]"
+          style={{
+            background: "linear-gradient(to right, transparent, rgba(155, 135, 245, 0.5), transparent)"
+          }}
+          animate={{
+            opacity: [0.3, 0.7, 0.3],
+            boxShadow: [
+              "0 0 2px rgba(155, 135, 245, 0.3)",
+              "0 0 8px rgba(155, 135, 245, 0.6)",
+              "0 0 2px rgba(155, 135, 245, 0.3)"
+            ]
+          }}
+          transition={{ 
+            duration: 7, 
+            repeat: Infinity, 
+            ease: "easeInOut" 
+          }}
+        />
+        
+        <motion.div 
+          data-depth="1.2" 
+          className="absolute top-[45%] left-0 w-full h-[1px]"
+          style={{
+            background: "linear-gradient(to right, transparent, rgba(89, 169, 245, 0.5), transparent)"
+          }}
+          animate={{
+            opacity: [0.2, 0.6, 0.2],
+            boxShadow: [
+              "0 0 2px rgba(89, 169, 245, 0.3)",
+              "0 0 8px rgba(89, 169, 245, 0.6)",
+              "0 0 2px rgba(89, 169, 245, 0.3)"
+            ]
+          }}
+          transition={{ 
+            duration: 9, 
+            repeat: Infinity, 
+            ease: "easeInOut",
+            delay: 1
+          }}
+        />
+        
+        <motion.div 
+          data-depth="1.5" 
+          className="absolute top-[55%] left-0 w-full h-[1px]"
+          style={{
+            background: "linear-gradient(to right, transparent, rgba(155, 135, 245, 0.5), transparent)"
+          }}
+          animate={{
+            opacity: [0.2, 0.5, 0.2],
+            boxShadow: [
+              "0 0 2px rgba(155, 135, 245, 0.3)",
+              "0 0 8px rgba(155, 135, 245, 0.6)",
+              "0 0 2px rgba(155, 135, 245, 0.3)"
+            ]
+          }}
+          transition={{ 
+            duration: 8, 
+            repeat: Infinity, 
+            ease: "easeInOut",
+            delay: 2
+          }}
+        />
       </div>
       
-      {/* Hero content */}
+      {/* Hero content with animated text */}
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-3xl mx-auto text-center">
-          <span className="inline-block px-4 py-1 glass-effect rounded-full mb-6 text-sm">
+        <motion.div 
+          className="max-w-3xl mx-auto text-center"
+          style={{ opacity: headerOpacity, y: headerY }}
+        >
+          <motion.span 
+            className="inline-block px-4 py-1 glass-effect rounded-full mb-6 text-sm"
+            initial={{ opacity: 0, y: 20 }}
+            animate={textControls}
+            transition={{ duration: 0.5 }}
+          >
             Data Engineer & Analyst
-          </span>
+          </motion.span>
           
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-glow">
-            Transforming <span className="text-futuristic-purple">Data</span> Into Actionable <span className="text-futuristic-blue">Insights</span>
-          </h1>
+          <motion.h1 
+            className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-glow"
+            initial={{ opacity: 0, y: 20 }}
+            animate={textControls}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <motion.span
+              initial={{ display: "inline-block" }}
+              animate={{ 
+                rotate: [0, 1, 0, -1, 0],
+                y: [0, -3, 0, -3, 0]
+              }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                ease: "easeInOut",
+                times: [0, 0.2, 0.5, 0.8, 1]
+              }}
+            >
+              Transforming 
+            </motion.span>{" "}
+            <motion.span 
+              className="text-futuristic-purple inline-block"
+              animate={{ 
+                textShadow: [
+                  "0 0 8px rgba(155, 135, 245, 0.4)",
+                  "0 0 16px rgba(155, 135, 245, 0.6)",
+                  "0 0 8px rgba(155, 135, 245, 0.4)"
+                ]
+              }}
+              transition={{ 
+                duration: 3, 
+                repeat: Infinity,
+                ease: "easeInOut" 
+              }}
+            >
+              Data
+            </motion.span>{" "}
+            Into Actionable{" "}
+            <motion.span 
+              className="text-futuristic-blue inline-block"
+              animate={{ 
+                textShadow: [
+                  "0 0 8px rgba(89, 169, 245, 0.4)",
+                  "0 0 16px rgba(89, 169, 245, 0.6)",
+                  "0 0 8px rgba(89, 169, 245, 0.4)"
+                ]
+              }}
+              transition={{ 
+                duration: 3, 
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 1.5 
+              }}
+            >
+              Insights
+            </motion.span>
+          </motion.h1>
           
-          <p className="text-xl opacity-80 mb-8">
+          <motion.p 
+            className="text-xl opacity-80 mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={textControls}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
             I design and build data pipelines that empower businesses to make data-driven decisions. 
             Specialized in modern data engineering, analytics, and machine learning.
-          </p>
+          </motion.p>
           
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <motion.div 
+            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={textControls}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
             <FuturisticButton 
               variant="primary" 
               size="lg" 
               glowEffect
-              onClick={() => document.getElementById('projects')?.scrollIntoView()}
+              onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
             >
               View Projects
             </FuturisticButton>
@@ -89,23 +312,38 @@ const HeroSection = () => {
             <FuturisticButton 
               variant="outline" 
               size="lg"
-              onClick={() => document.getElementById('contact')?.scrollIntoView()}
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Get In Touch
             </FuturisticButton>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
       
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce">
+      {/* Animated scroll indicator */}
+      <motion.div 
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center"
+        animate={{ y: [0, 10, 0] }}
+        transition={{ 
+          duration: 2, 
+          repeat: Infinity,
+          ease: "easeInOut" 
+        }}
+      >
         <span className="text-sm mb-2">Scroll Down</span>
-        <svg 
+        <motion.svg 
           className="w-6 h-6" 
           fill="none" 
           stroke="currentColor" 
           viewBox="0 0 24 24" 
           xmlns="http://www.w3.org/2000/svg"
+          animate={{ y: [0, 5, 0] }}
+          transition={{ 
+            duration: 1.5, 
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 0.5
+          }}
         >
           <path 
             strokeLinecap="round" 
@@ -113,8 +351,8 @@ const HeroSection = () => {
             strokeWidth={2} 
             d="M19 14l-7 7m0 0l-7-7m7 7V3"
           />
-        </svg>
-      </div>
+        </motion.svg>
+      </motion.div>
     </section>
   );
 };

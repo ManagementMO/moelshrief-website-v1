@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const BackToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -28,31 +29,46 @@ const BackToTop = () => {
   };
   
   return (
-    <button
-      onClick={scrollToTop}
-      className={`fixed bottom-6 right-6 z-50 p-3 rounded-full transition-all duration-500 backdrop-blur-xl bg-white/5 border border-white/10 shadow-[0_8px_32px_rgba(155,135,245,0.4)] ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"
-      }`}
-      aria-label="Back to top"
-    >
-      <div className="relative overflow-hidden w-8 h-8 flex items-center justify-center group">
-        <div className="absolute inset-0 bg-gradient-to-tr from-futuristic-purple/20 to-futuristic-blue/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-        <svg 
-          xmlns="http://www.w3.org/2000/svg" 
-          className="h-6 w-6 text-futuristic-purple relative z-10 transition-transform duration-300 group-hover:-translate-y-1" 
-          fill="none" 
-          viewBox="0 0 24 24" 
-          stroke="currentColor"
+    <AnimatePresence>
+      {isVisible && (
+        <motion.button
+          onClick={scrollToTop}
+          className="fixed bottom-6 right-6 z-50 p-3 rounded-full backdrop-blur-xl bg-white/5 border border-white/10 shadow-[0_8px_32px_rgba(155,135,245,0.4)]"
+          aria-label="Back to top"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 20 }}
+          transition={{ duration: 0.3 }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
         >
-          <path 
-            strokeLinecap="round" 
-            strokeLinejoin="round" 
-            strokeWidth={2} 
-            d="M5 10l7-7m0 0l7 7m-7-7v18" 
-          />
-        </svg>
-      </div>
-    </button>
+          <div className="relative overflow-hidden w-8 h-8 flex items-center justify-center group">
+            <motion.div 
+              className="absolute inset-0 bg-gradient-to-tr from-futuristic-purple/20 to-futuristic-blue/20"
+              initial={{ opacity: 0 }}
+              whileHover={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+            ></motion.div>
+            <motion.svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              className="h-6 w-6 text-futuristic-purple relative z-10" 
+              fill="none" 
+              viewBox="0 0 24 24" 
+              stroke="currentColor"
+              whileHover={{ y: -2 }}
+              transition={{ duration: 0.3 }}
+            >
+              <path 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                strokeWidth={2} 
+                d="M5 10l7-7m0 0l7 7m-7-7v18" 
+              />
+            </motion.svg>
+          </div>
+        </motion.button>
+      )}
+    </AnimatePresence>
   );
 };
 

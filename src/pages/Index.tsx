@@ -10,6 +10,7 @@ import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
 import GlowingOrb from "@/components/GlowingOrb";
+import { motion } from "framer-motion";
 
 const Index = () => {
   // Set dark mode for modern look
@@ -21,11 +22,12 @@ const Index = () => {
     };
   }, []);
   
-  // Mouse follower effect
+  // Mouse follower effect with enhanced animations
   const cursorRef = useRef<HTMLDivElement>(null);
   const cursorDotRef = useRef<HTMLDivElement>(null);
   const [cursorVisible, setCursorVisible] = useState(false);
   const [cursorEnlarged, setCursorEnlarged] = useState(false);
+  const [cursorText, setCursorText] = useState("");
   
   useEffect(() => {
     const moveCursor = (e: MouseEvent) => {
@@ -48,13 +50,30 @@ const Index = () => {
       setCursorVisible(false);
     };
     
-    // Handle interactive elements
+    // Handle interactive elements with enhanced text
     const handleLinkHoverEvents = () => {
       const links = document.querySelectorAll('a, button, [role="button"], input, textarea, select, [data-cursor]');
       
       links.forEach(link => {
-        link.addEventListener('mouseenter', () => setCursorEnlarged(true));
-        link.addEventListener('mouseleave', () => setCursorEnlarged(false));
+        link.addEventListener('mouseenter', () => {
+          setCursorEnlarged(true);
+          
+          // Add text based on element type
+          if (link.tagName === 'BUTTON' || link.getAttribute('role') === 'button') {
+            setCursorText("Click");
+          } else if (link.tagName === 'A') {
+            setCursorText(link.getAttribute('href')?.startsWith('#') ? "Scroll" : "Visit");
+          } else if (link.tagName === 'INPUT' || link.tagName === 'TEXTAREA') {
+            setCursorText("Type");
+          } else if (link.hasAttribute('data-cursor')) {
+            setCursorText(link.getAttribute('data-cursor') || "");
+          }
+        });
+        
+        link.addEventListener('mouseleave', () => {
+          setCursorEnlarged(false);
+          setCursorText("");
+        });
       });
     };
     
@@ -64,11 +83,38 @@ const Index = () => {
     
     handleLinkHoverEvents();
     
+    // Listen for secret key combination
+    const secretCode = ['j', 'o', 'k', 'e'];
+    let position = 0;
+    
+    const handleKeydown = (e: KeyboardEvent) => {
+      // Get the key that was pressed
+      const key = e.key.toLowerCase();
+      
+      // Check if the key matches the secret code at the current position
+      if (key === secretCode[position]) {
+        position++;
+        
+        // If we reached the end of the secret code
+        if (position === secretCode.length) {
+          // Secret code completed, navigate to joke page
+          window.location.href = '/joke';
+          position = 0;
+        }
+      } else {
+        // Reset if wrong key
+        position = 0;
+      }
+    };
+    
+    window.addEventListener('keydown', handleKeydown);
+    
     // Cleanup
     return () => {
       document.removeEventListener('mousemove', moveCursor);
       document.removeEventListener('mouseenter', handleMouseEnter);
       document.removeEventListener('mouseleave', handleMouseLeave);
+      window.removeEventListener('keydown', handleKeydown);
       
       const links = document.querySelectorAll('a, button, [role="button"], input, textarea, select, [data-cursor]');
       links.forEach(link => {
@@ -90,18 +136,29 @@ const Index = () => {
       const top = Math.random() * 100;
       
       particles.push(
-        <div 
+        <motion.div 
           key={i}
           className="absolute left-0 text-futuristic-purple/10 pointer-events-none"
-          style={{
+          initial={{
             top: `${top}vh`,
-            fontSize: `${size}px`,
-            animation: `dataStream ${duration}s linear ${delay}s infinite`,
             opacity: 0
+          }}
+          animate={{
+            left: ['0vw', '100vw'],
+            opacity: [0, 0.2, 0]
+          }}
+          transition={{
+            duration: duration,
+            delay: delay,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+          style={{
+            fontSize: `${size}px`,
           }}
         >
           {Math.random() > 0.5 ? '01' : Math.random() > 0.5 ? '10' : '{}'} 
-        </div>
+        </motion.div>
       );
     }
     
@@ -110,10 +167,10 @@ const Index = () => {
   
   return (
     <div className="relative min-h-screen bg-background text-foreground overflow-hidden">
-      {/* RTX-style custom cursor */}
-      <div 
+      {/* Enhanced RTX-style custom cursor */}
+      <motion.div 
         ref={cursorRef} 
-        className={`fixed w-8 h-8 rounded-full pointer-events-none z-[9999] mix-blend-difference transition-transform duration-150 ease-out ${
+        className={`fixed w-8 h-8 rounded-full pointer-events-none z-[9999] mix-blend-difference transition-transform duration-150 ease-out flex items-center justify-center ${
           cursorVisible ? 'opacity-100' : 'opacity-0'
         } ${
           cursorEnlarged ? 'scale-[2.5]' : 'scale-100'
@@ -123,8 +180,12 @@ const Index = () => {
           backdropFilter: 'blur(4px)',
           border: '1px solid rgba(155, 135, 245, 0.3)'
         }}
-      />
-      <div 
+      >
+        {cursorText && (
+          <span className="text-[8px] font-medium text-white">{cursorText}</span>
+        )}
+      </motion.div>
+      <motion.div 
         ref={cursorDotRef} 
         className={`fixed w-2 h-2 bg-futuristic-purple rounded-full pointer-events-none z-[9999] ${
           cursorVisible ? 'opacity-100' : 'opacity-0'
@@ -143,6 +204,20 @@ const Index = () => {
       
       {/* Noise texture overlay */}
       <div className="fixed inset-0 z-0 pointer-events-none bg-noise opacity-5"></div>
+      
+      {/* Hint for secret page */}
+      <motion.div 
+        className="fixed bottom-4 left-4 z-20 text-xs text-white/30 font-mono"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: [0, 0.3, 0] }}
+        transition={{ 
+          duration: 4,
+          repeat: Infinity,
+          repeatDelay: 20
+        }}
+      >
+        Type "joke" for a surprise...
+      </motion.div>
       
       {/* Main content */}
       <div className="relative z-10">
