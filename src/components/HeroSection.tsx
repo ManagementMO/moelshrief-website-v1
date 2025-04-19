@@ -1,4 +1,3 @@
-
 import { useEffect, useRef } from "react";
 import { FuturisticButton } from "./ui/futuristic-button";
 import { motion, useAnimation, useScroll, useTransform } from "framer-motion";
@@ -60,24 +59,19 @@ const HeroSection = () => {
     <section 
       id="home" 
       ref={containerRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 bg-cyber-bg text-cyber-text"
     >
       {/* Background gradient */}
-      <div className="absolute inset-0 gradient-background"></div>
+      <div className="absolute inset-0 gradient-background opacity-80"></div>
       
       {/* Floating elements with enhanced 3D effects */}
       <div ref={floatingElementsRef} className="absolute inset-0 pointer-events-none">
         {/* Data visualization elements that float and glow */}
         <motion.div 
           data-depth="2" 
-          className="absolute top-1/4 left-1/4 w-32 h-32 rounded-full bg-futuristic-purple/10 backdrop-blur-sm"
+          className="absolute top-1/4 left-1/4 w-32 h-32 rounded-full bg-secondary/10 backdrop-blur-sm animate-pulse-glow-secondary"
           animate={{
             y: [0, -20, 0],
-            boxShadow: [
-              "0 0 20px rgba(155, 135, 245, 0.3)",
-              "0 0 30px rgba(155, 135, 245, 0.5)",
-              "0 0 20px rgba(155, 135, 245, 0.3)"
-            ]
           }}
           transition={{ 
             duration: 6, 
@@ -88,14 +82,9 @@ const HeroSection = () => {
         
         <motion.div 
           data-depth="1.5" 
-          className="absolute top-1/3 right-1/4 w-20 h-20 rounded-full bg-futuristic-blue/10 backdrop-blur-sm"
+          className="absolute top-1/3 right-1/4 w-20 h-20 rounded-full bg-primary/10 backdrop-blur-sm animate-pulse-glow-primary"
           animate={{
             y: [0, -15, 0],
-            boxShadow: [
-              "0 0 15px rgba(89, 169, 245, 0.3)",
-              "0 0 25px rgba(89, 169, 245, 0.5)",
-              "0 0 15px rgba(89, 169, 245, 0.3)"
-            ]
           }}
           transition={{ 
             duration: 5, 
@@ -107,14 +96,9 @@ const HeroSection = () => {
         
         <motion.div 
           data-depth="1" 
-          className="absolute bottom-1/4 left-1/3 w-16 h-16 rounded-full bg-futuristic-purple/20 backdrop-blur-sm"
+          className="absolute bottom-1/4 left-1/3 w-16 h-16 rounded-full bg-secondary/20 backdrop-blur-sm animate-pulse-glow-secondary"
           animate={{
             y: [0, -10, 0],
-            boxShadow: [
-              "0 0 10px rgba(155, 135, 245, 0.4)",
-              "0 0 20px rgba(155, 135, 245, 0.6)",
-              "0 0 10px rgba(155, 135, 245, 0.4)"
-            ]
           }}
           transition={{ 
             duration: 4, 
@@ -126,14 +110,9 @@ const HeroSection = () => {
         
         <motion.div 
           data-depth="2.5" 
-          className="absolute top-2/3 right-1/3 w-24 h-24 rounded-full bg-futuristic-blue/20 backdrop-blur-sm"
+          className="absolute top-2/3 right-1/3 w-24 h-24 rounded-full bg-primary/20 backdrop-blur-sm animate-pulse-glow-primary"
           animate={{
             opacity: [0.5, 0.8, 0.5],
-            boxShadow: [
-              "0 0 15px rgba(89, 169, 245, 0.3)",
-              "0 0 25px rgba(89, 169, 245, 0.5)",
-              "0 0 15px rgba(89, 169, 245, 0.3)"
-            ]
           }}
           transition={{ 
             duration: 3, 
@@ -146,16 +125,16 @@ const HeroSection = () => {
         {/* 3D Data visualization lines */}
         <motion.div 
           data-depth="1.8" 
-          className="absolute top-1/2 left-0 w-full h-[1px]"
+          className="absolute top-1/2 left-0 w-full h-[1px] shadow-secondary"
           style={{
-            background: "linear-gradient(to right, transparent, rgba(155, 135, 245, 0.5), transparent)"
+            background: "linear-gradient(to right, transparent, hsl(var(--secondary) / 0.5), transparent)"
           }}
           animate={{
             opacity: [0.3, 0.7, 0.3],
             boxShadow: [
-              "0 0 2px rgba(155, 135, 245, 0.3)",
-              "0 0 8px rgba(155, 135, 245, 0.6)",
-              "0 0 2px rgba(155, 135, 245, 0.3)"
+              "0 0 2px hsl(var(--secondary) / 0.3)",
+              "0 0 8px hsl(var(--secondary) / 0.6)",
+              "0 0 2px hsl(var(--secondary) / 0.3)"
             ]
           }}
           transition={{ 
@@ -167,16 +146,16 @@ const HeroSection = () => {
         
         <motion.div 
           data-depth="1.2" 
-          className="absolute top-[45%] left-0 w-full h-[1px]"
+          className="absolute top-[45%] left-0 w-full h-[1px] shadow-primary"
           style={{
-            background: "linear-gradient(to right, transparent, rgba(89, 169, 245, 0.5), transparent)"
+            background: "linear-gradient(to right, transparent, hsl(var(--primary) / 0.5), transparent)"
           }}
           animate={{
             opacity: [0.2, 0.6, 0.2],
             boxShadow: [
-              "0 0 2px rgba(89, 169, 245, 0.3)",
-              "0 0 8px rgba(89, 169, 245, 0.6)",
-              "0 0 2px rgba(89, 169, 245, 0.3)"
+              "0 0 2px hsl(var(--primary) / 0.3)",
+              "0 0 8px hsl(var(--primary) / 0.6)",
+              "0 0 2px hsl(var(--primary) / 0.3)"
             ]
           }}
           transition={{ 
@@ -189,16 +168,16 @@ const HeroSection = () => {
         
         <motion.div 
           data-depth="1.5" 
-          className="absolute top-[55%] left-0 w-full h-[1px]"
+          className="absolute top-[55%] left-0 w-full h-[1px] shadow-secondary"
           style={{
-            background: "linear-gradient(to right, transparent, rgba(155, 135, 245, 0.5), transparent)"
+            background: "linear-gradient(to right, transparent, hsl(var(--secondary) / 0.5), transparent)"
           }}
           animate={{
             opacity: [0.2, 0.5, 0.2],
             boxShadow: [
-              "0 0 2px rgba(155, 135, 245, 0.3)",
-              "0 0 8px rgba(155, 135, 245, 0.6)",
-              "0 0 2px rgba(155, 135, 245, 0.3)"
+              "0 0 2px hsl(var(--secondary) / 0.3)",
+              "0 0 8px hsl(var(--secondary) / 0.6)",
+              "0 0 2px hsl(var(--secondary) / 0.3)"
             ]
           }}
           transition={{ 
@@ -250,9 +229,9 @@ const HeroSection = () => {
               className="text-futuristic-purple inline-block"
               animate={{ 
                 textShadow: [
-                  "0 0 8px rgba(155, 135, 245, 0.4)",
-                  "0 0 16px rgba(155, 135, 245, 0.6)",
-                  "0 0 8px rgba(155, 135, 245, 0.4)"
+                  "0 0 8px hsl(var(--secondary) / 0.4)",
+                  "0 0 16px hsl(var(--secondary) / 0.6)",
+                  "0 0 8px hsl(var(--secondary) / 0.4)"
                 ]
               }}
               transition={{ 
@@ -268,9 +247,9 @@ const HeroSection = () => {
               className="text-futuristic-blue inline-block"
               animate={{ 
                 textShadow: [
-                  "0 0 8px rgba(89, 169, 245, 0.4)",
-                  "0 0 16px rgba(89, 169, 245, 0.6)",
-                  "0 0 8px rgba(89, 169, 245, 0.4)"
+                  "0 0 8px hsl(var(--primary) / 0.4)",
+                  "0 0 16px hsl(var(--primary) / 0.6)",
+                  "0 0 8px hsl(var(--primary) / 0.4)"
                 ]
               }}
               transition={{ 

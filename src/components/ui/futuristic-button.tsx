@@ -1,15 +1,17 @@
 
 import React, { ReactNode } from "react";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
+import { motion, HTMLMotionProps } from "framer-motion";
 
-interface FuturisticButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface FuturisticButtonProps {
+  // Define only the props we need
   children: ReactNode;
   variant?: "primary" | "secondary" | "outline" | "ghost";
   size?: "sm" | "md" | "lg";
   glowEffect?: boolean;
   className?: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+
 }
 
 const FuturisticButton = ({
@@ -23,10 +25,10 @@ const FuturisticButton = ({
   const baseStyles = "relative font-medium rounded-md flex items-center justify-center transition-all duration-300 ease-in-out overflow-hidden group";
   
   const variantStyles = {
-    primary: "bg-gradient-to-r from-futuristic-purple to-futuristic-purple-light text-white hover:from-futuristic-purple-light hover:to-futuristic-purple",
-    secondary: "bg-gradient-to-r from-futuristic-blue to-futuristic-blue-dark text-white hover:from-futuristic-blue-dark hover:to-futuristic-blue",
-    outline: "bg-transparent border border-futuristic-purple text-futuristic-purple hover:bg-futuristic-purple/10",
-    ghost: "bg-transparent text-futuristic-purple hover:bg-futuristic-purple/10",
+    primary: "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground hover:from-primary/80 hover:to-primary",
+    secondary: "bg-gradient-to-r from-secondary to-secondary/80 text-secondary-foreground hover:from-secondary/80 hover:to-secondary",
+    outline: "bg-transparent border border-primary text-primary hover:bg-primary/10",
+    ghost: "bg-transparent text-primary hover:bg-primary/10",
   };
   
   const sizeStyles = {
@@ -37,7 +39,7 @@ const FuturisticButton = ({
   
   // Advanced RTX glow effect
   const glowStyles = glowEffect 
-    ? "before:content-[''] before:absolute before:inset-0 before:rounded-md before:bg-futuristic-purple/30 before:blur-xl before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-300" 
+    ? "before:content-[''] before:absolute before:inset-0 before:rounded-md before:bg-primary/30 before:blur-xl before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-300" 
     : "";
 
   return (

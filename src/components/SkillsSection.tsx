@@ -13,12 +13,12 @@ const SkillsSection = () => {
   
   // Skills data
   const skills = [
-    { name: "Data Engineering", level: 95, color: "bg-futuristic-purple" },
-    { name: "Data Analysis", level: 90, color: "bg-futuristic-blue" },
-    { name: "Machine Learning", level: 85, color: "bg-futuristic-purple-light" },
-    { name: "Data Visualization", level: 92, color: "bg-futuristic-blue-dark" },
-    { name: "Cloud Platforms", level: 88, color: "bg-futuristic-purple" },
-    { name: "SQL & NoSQL", level: 95, color: "bg-futuristic-blue" },
+    { name: "Data Engineering", level: 95, color: "bg-primary" },
+    { name: "Data Analysis", level: 90, color: "bg-secondary" },
+    { name: "Machine Learning", level: 85, color: "bg-primary/80" },
+    { name: "Data Visualization", level: 92, color: "bg-secondary/80" },
+    { name: "Cloud Platforms", level: 88, color: "bg-primary" },
+    { name: "SQL & NoSQL", level: 95, color: "bg-secondary" },
   ];
   
   // Technical skills data with custom icons from Lucide
@@ -82,7 +82,7 @@ const SkillsSection = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <motion.span 
-            className="inline-block px-3 py-1 rounded-full text-sm bg-futuristic-purple/10 text-futuristic-purple mb-4"
+            className="inline-block px-3 py-1 rounded-full text-sm bg-primary/10 text-primary mb-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -98,7 +98,7 @@ const SkillsSection = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            Technical <span className="text-futuristic-purple">Expertise</span>
+            Technical <span className="text-primary">Expertise</span>
           </motion.h2>
           
           <motion.p 
@@ -139,7 +139,7 @@ const SkillsSection = () => {
                 >
                   <div className="flex justify-between">
                     <span className="font-medium">{skill.name}</span>
-                    <span className="text-futuristic-purple">{skill.level}%</span>
+                    <span className="text-primary">{skill.level}%</span>
                   </div>
                   
                   <div className="h-2 bg-white/5 rounded-full overflow-hidden">
@@ -187,14 +187,14 @@ const SkillsSection = () => {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-futuristic-purple/20 via-futuristic-blue/20 to-futuristic-purple/20 backdrop-blur-sm"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-secondary/20 to-primary/20 backdrop-blur-sm"></div>
           
           {/* Animated data streams */}
           <div className="absolute inset-0">
             {[...Array(20)].map((_, i) => (
               <motion.div 
                 key={i}
-                className="absolute h-1 bg-futuristic-purple/40 rounded-full"
+                className="absolute h-1 bg-primary/40 rounded-full"
                 initial={{
                   left: '-100px',
                   top: `${Math.random() * 100}%`,

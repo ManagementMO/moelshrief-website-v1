@@ -40,7 +40,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto flex justify-between items-center">
         <a href="#home" className="text-2xl font-bold text-glow">
-          Mo<span className="text-futuristic-purple">.</span>Elshrief
+          Mo<span className="text-primary">.</span>Elshrief
         </a>
 
         {/* Desktop Navigation */}
