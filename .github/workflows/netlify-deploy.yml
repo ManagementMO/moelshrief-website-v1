@@ -1,3 +1,4 @@
+
 name: Netlify CI
 
 on:
@@ -12,14 +13,18 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+      
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: '18'
+      
       - name: Install Dependencies
-        run: npm install
+        run: npm install --force
+      
       - name: Build
         run: npm run build
+      
       - name: Deploy to Netlify
         uses: netlify/actions/cli@master
         with:
@@ -27,3 +32,6 @@ jobs:
           production: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           # NETLIFY_AUTH_TOKEN & NETLIFY_SITE_ID need to be set in repo secrets
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
