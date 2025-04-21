@@ -221,7 +221,7 @@ export default function SkillsMarquee() {
   `;
 
   return (
-    <section className="py-24 bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden">
+    <section className="py-24 bg-cyber-bg overflow-hidden">
       {/* Add the CSS keyframes */}
       <style>{keyframes}</style>
 
@@ -238,8 +238,8 @@ export default function SkillsMarquee() {
         {/* Row 1: Data Engineering Tools - Left to Right */}
         <div className="relative mb-14 overflow-hidden group">
           {/* Gradient Masks */}
-          <div className="absolute top-0 bottom-0 left-0 w-40 z-10 bg-gradient-to-r from-black via-black/90 to-transparent pointer-events-none"></div>
-          <div className="absolute top-0 bottom-0 right-0 w-40 z-10 bg-gradient-to-l from-black via-black/90 to-transparent pointer-events-none"></div>
+          <div className="absolute top-0 bottom-0 left-0 w-40 z-10 bg-gradient-to-r from-cyber-bg via-cyber-bg/90 to-transparent pointer-events-none"></div>
+          <div className="absolute top-0 bottom-0 right-0 w-40 z-10 bg-gradient-to-l from-cyber-bg via-cyber-bg/90 to-transparent pointer-events-none"></div>
           
           {/* Infinite Scroll Container */}
           <div className="flex py-6 w-min animate-marquee-ltr pause-on-hover" style={{ animationDuration: firstRowDuration }}>
@@ -253,8 +253,8 @@ export default function SkillsMarquee() {
         {/* Row 2: Analytics & ML Tools - Right to Left */}
         <div className="relative overflow-hidden group">
           {/* Gradient Masks */}
-          <div className="absolute top-0 bottom-0 left-0 w-40 z-10 bg-gradient-to-r from-black via-black/90 to-transparent pointer-events-none"></div>
-          <div className="absolute top-0 bottom-0 right-0 w-40 z-10 bg-gradient-to-l from-black via-black/90 to-transparent pointer-events-none"></div>
+          <div className="absolute top-0 bottom-0 left-0 w-40 z-10 bg-gradient-to-r from-cyber-bg via-cyber-bg/90 to-transparent pointer-events-none"></div>
+          <div className="absolute top-0 bottom-0 right-0 w-40 z-10 bg-gradient-to-l from-cyber-bg via-cyber-bg/90 to-transparent pointer-events-none"></div>
           
           {/* Infinite Scroll Container */}
           <div className="flex py-6 w-min animate-marquee-rtl pause-on-hover" style={{ animationDuration: secondRowDuration }}>
