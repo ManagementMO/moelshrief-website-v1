@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FuturisticButton } from "./ui/futuristic-button";
 import { motion, useAnimation, useScroll, useTransform } from "framer-motion";
 
@@ -59,7 +59,7 @@ const HeroSection = () => {
     <section 
       id="home" 
       ref={containerRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 bg-cyber-bg text-cyber-text"
+      className="relative min-h-screen flex items-center overflow-hidden pt-16 bg-cyber-bg text-cyber-text"
     >
       {/* Background gradient */}
       <div className="absolute inset-0 gradient-background opacity-80"></div>
@@ -190,9 +190,9 @@ const HeroSection = () => {
       </div>
       
       {/* Hero content with animated text */}
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
         <motion.div 
-          className="max-w-3xl mx-auto text-center"
+          className="max-w-2xl text-center md:text-left"
           style={{ opacity: headerOpacity, y: headerY }}
         >
           <motion.span 
@@ -296,6 +296,135 @@ const HeroSection = () => {
               Get In Touch
             </FuturisticButton>
           </motion.div>
+        </motion.div>
+        
+        {/* 3D Rotating Data Visualization */}
+        <motion.div
+          className="relative w-full md:w-2/5 h-96 hidden md:flex items-center justify-center"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          <div className="relative w-80 h-80">
+            {/* Core visualization sphere */}
+            <motion.div
+              className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/30 to-secondary/30 backdrop-blur-lg border border-white/10"
+              style={{ boxShadow: "0 0 40px rgba(0, 0, 0, 0.2), inset 0 0 20px rgba(255, 255, 255, 0.1)" }}
+              animate={{ 
+                boxShadow: [
+                  "0 0 40px rgba(0, 0, 0, 0.2), inset 0 0 20px rgba(255, 255, 255, 0.1)", 
+                  "0 0 60px rgba(0, 0, 0, 0.3), inset 0 0 30px rgba(255, 255, 255, 0.15)",
+                  "0 0 40px rgba(0, 0, 0, 0.2), inset 0 0 20px rgba(255, 255, 255, 0.1)"
+                ] 
+              }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+            />
+            
+            {/* Orbiting rings */}
+            <motion.div 
+              className="absolute top-1/2 left-1/2 w-[120%] h-[120%] -translate-x-1/2 -translate-y-1/2 border-2 border-primary/20 rounded-full"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            >
+              {/* Data node 1 */}
+              <motion.div 
+                className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-primary shadow-lg shadow-primary/30"
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              />
+            </motion.div>
+            
+            {/* Second orbit ring */}
+            <motion.div 
+              className="absolute top-1/2 left-1/2 w-[150%] h-[90%] -translate-x-1/2 -translate-y-1/2 border-2 border-secondary/20 rounded-full"
+              animate={{ rotate: -360 }}
+              transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+              style={{ transform: "rotateX(65deg) rotateY(0deg) rotateZ(0deg)" }}
+            >
+              {/* Data node 2 */}
+              <motion.div 
+                className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-secondary shadow-lg shadow-secondary/30"
+                animate={{ scale: [1, 1.3, 1] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              />
+            </motion.div>
+            
+            {/* Third orbit ring */}
+            <motion.div 
+              className="absolute top-1/2 left-1/2 w-[180%] h-[70%] -translate-x-1/2 -translate-y-1/2 border-2 border-blue-400/20 rounded-full"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+              style={{ transform: "rotateX(35deg) rotateY(40deg) rotateZ(0deg)" }}
+            >
+              {/* Data node 3 */}
+              <motion.div 
+                className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-blue-400 shadow-lg shadow-blue-400/30"
+                animate={{ scale: [1, 1.4, 1] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+              />
+            </motion.div>
+            
+            {/* Inner data points */}
+            <motion.div
+              className="absolute top-1/4 left-1/4 w-3 h-3 rounded-full bg-white/80"
+              animate={{
+                opacity: [0.4, 0.8, 0.4],
+                scale: [1, 1.2, 1],
+              }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            />
+            
+            <motion.div
+              className="absolute bottom-1/4 right-1/4 w-2.5 h-2.5 rounded-full bg-white/80"
+              animate={{
+                opacity: [0.3, 0.7, 0.3],
+                scale: [1, 1.3, 1],
+              }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            />
+            
+            <motion.div
+              className="absolute top-1/3 right-1/4 w-2 h-2 rounded-full bg-white/80"
+              animate={{
+                opacity: [0.2, 0.6, 0.2],
+                scale: [1, 1.4, 1],
+              }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+            />
+            
+            {/* Floating data points */}
+            {[...Array(15)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-1.5 h-1.5 rounded-full bg-white/50"
+                style={{
+                  top: `${Math.random() * 100}%`,
+                  left: `${Math.random() * 100}%`,
+                }}
+                animate={{
+                  opacity: [0.3, 0.6, 0.3],
+                  y: [0, Math.random() * 10 - 5, 0],
+                  x: [0, Math.random() * 10 - 5, 0],
+                }}
+                transition={{ 
+                  duration: 3 + Math.random() * 5, 
+                  repeat: Infinity, 
+                  ease: "easeInOut",
+                  delay: Math.random() * 2
+                }}
+              />
+            ))}
+            
+            {/* Core glow effect */}
+            <motion.div
+              className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary/5 to-secondary/5 blur-xl"
+              animate={{ 
+                opacity: [0.3, 0.6, 0.3],
+                scale: [0.8, 1.1, 0.8]
+              }}
+              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </div>
         </motion.div>
       </div>
       
