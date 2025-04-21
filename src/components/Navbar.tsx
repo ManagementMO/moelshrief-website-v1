@@ -1,18 +1,37 @@
 
 import { useState, useEffect } from "react";
-import { FuturisticButton } from "./ui/futuristic-button";
+import { Button } from "./ui/button";
+import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
+      if (window.scrollY > 20) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
+      }
+      
+      // Track active section for menu highlighting
+      const sections = ['home', 'about', 'skills', 'projects', 'experience', 'contact'];
+      const scrollPosition = window.scrollY + 100;
+      
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const offsetTop = element.offsetTop;
+          const offsetHeight = element.offsetHeight;
+          
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section);
+            break;
+          }
+        }
       }
     };
 
@@ -23,106 +42,153 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Skills", href: "#skills" },
-    { name: "Projects", href: "#projects" },
-    { name: "Experience", href: "#experience" },
-    { name: "Contact", href: "#contact" },
+    { name: "Home", href: "#home", id: "home" },
+    { name: "About", href: "#about", id: "about" },
+    { name: "Skills", href: "#skills", id: "skills" },
+    { name: "Projects", href: "#projects", id: "projects" },
+    { name: "Experience", href: "#experience", id: "experience" },
+    { name: "Contact", href: "#contact", id: "contact" },
   ];
 
   return (
-    <nav 
+    <motion.nav 
       className={cn(
-        "fixed top-0 left-0 w-full z-50 transition-all duration-300",
-        isScrolled ? "glass-effect py-3" : "py-5"
+        "fixed top-0 left-0 w-full z-50 transition-all duration-500",
+        isScrolled 
+          ? "backdrop-blur-md bg-black/40 border-b border-white/5 py-4" 
+          : "bg-transparent py-6"
       )}
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
     >
-      <div className="container mx-auto flex justify-between items-center">
-        <a href="#home" className="text-2xl font-bold text-glow">
-          Mo<span className="text-primary">.</span>Elshrief
+      <div className="container mx-auto px-8 flex justify-between items-center">
+        <a href="#home" className="text-xl font-medium">
+          <span className="bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">Mo.</span>Elshrief
         </a>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="hover-underline text-foreground/80 hover:text-foreground transition-colors"
-            >
-              {link.name}
-            </a>
-          ))}
-          <FuturisticButton 
-            variant="primary" 
-            size="sm" 
-            glowEffect
+          <ul className="flex space-x-8 mr-8">
+            {navLinks.map((link) => (
+              <li key={link.name} className="relative">
+                <a
+                  href={link.href}
+                  className={cn(
+                    "text-sm font-light tracking-wide transition-colors",
+                    activeSection === link.id ? "text-white" : "text-white/50 hover:text-white/80"
+                  )}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById(link.id)?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                >
+                  {link.name}
+                  {activeSection === link.id && (
+                    <motion.div
+                      className="absolute -bottom-1 left-0 w-full h-[1px] bg-white"
+                      layoutId="navIndicator"
+                      transition={{ type: "spring", duration: 0.5 }}
+                    />
+                  )}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <Button 
+            variant="outline"
+            size="sm"
+            className="rounded-full text-xs border-white/20 hover:bg-white/10 px-5"
+            onClick={() => window.open('/resume.pdf', '_blank')}
           >
             Resume
-          </FuturisticButton>
+          </Button>
         </div>
 
         {/* Mobile Menu Button */}
         <button 
-          className="md:hidden text-foreground"
+          className="md:hidden text-white w-8 h-8 relative focus:outline-none"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle menu"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            {mobileMenuOpen ? (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            ) : (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            )}
-          </svg>
+          <div className="block w-8 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <span
+              aria-hidden="true"
+              className={cn(
+                "block absolute h-0.5 w-8 bg-white transform transition duration-300 ease-in-out",
+                mobileMenuOpen ? "rotate-45" : "-translate-y-1.5"
+              )}
+            />
+            <span
+              aria-hidden="true"
+              className={cn(
+                "block absolute h-0.5 bg-white transform transition duration-300 ease-in-out",
+                mobileMenuOpen ? "opacity-0" : "w-8"
+              )}
+            />
+            <span
+              aria-hidden="true"
+              className={cn(
+                "block absolute h-0.5 w-8 bg-white transform transition duration-300 ease-in-out",
+                mobileMenuOpen ? "-rotate-45" : "translate-y-1.5"
+              )}
+            />
+          </div>
         </button>
       </div>
 
       {/* Mobile Menu */}
-      <div
-        className={cn(
-          "md:hidden glass-effect absolute w-full transition-all duration-300 ease-in-out",
-          mobileMenuOpen ? "max-h-96 py-4 opacity-100" : "max-h-0 py-0 opacity-0 overflow-hidden"
-        )}
-      >
-        <div className="container mx-auto flex flex-col space-y-4">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="py-2 text-foreground/80 hover:text-foreground transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              {link.name}
-            </a>
-          ))}
-          <FuturisticButton 
-            variant="primary" 
-            size="sm" 
-            className="mt-4"
-            onClick={() => window.open('/resume.pdf', '_blank')}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            className="md:hidden fixed inset-0 bg-black/95 backdrop-blur-md z-40 flex flex-col justify-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
           >
-            Resume
-          </FuturisticButton>
-        </div>
-      </div>
-    </nav>
+            <div className="container mx-auto px-8 py-12 flex flex-col items-center">
+              {navLinks.map((link, index) => (
+                <motion.a
+                  key={link.name}
+                  href={link.href}
+                  className="text-3xl font-light my-4 text-white/70 hover:text-white transition-colors"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setMobileMenuOpen(false);
+                    document.getElementById(link.id)?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: -20, opacity: 0 }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                >
+                  {link.name}
+                </motion.a>
+              ))}
+              <motion.div
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -20, opacity: 0 }}
+                transition={{ duration: 0.3, delay: navLinks.length * 0.1 }}
+                className="mt-8"
+              >
+                <Button 
+                  variant="outline"
+                  className="rounded-full border-white/20 hover:bg-white/10 px-8 py-6"
+                  onClick={() => {
+                    window.open('/resume.pdf', '_blank');
+                    setMobileMenuOpen(false);
+                  }}
+                >
+                  Resume
+                </Button>
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.nav>
   );
 };
 

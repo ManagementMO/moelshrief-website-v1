@@ -11,6 +11,8 @@ interface FuturisticButtonProps {
   glowEffect?: boolean;
   className?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  type?: "button" | "submit" | "reset";
+  disabled?: boolean;
 
 }
 
