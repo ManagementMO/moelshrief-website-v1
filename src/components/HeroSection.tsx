@@ -190,9 +190,9 @@ const HeroSection = () => {
       </div>
       
       {/* Hero content with animated text */}
-      <div className="container mx-auto px-4 relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+      <div className="container mx-auto px-4 relative z-10 flex flex-col items-center justify-center gap-8">
         <motion.div 
-          className="max-w-2xl text-center md:text-left"
+          className="max-w-2xl text-center"
           style={{ opacity: headerOpacity, y: headerY }}
         >
           <motion.span 
@@ -300,7 +300,7 @@ const HeroSection = () => {
         
         {/* 3D Rotating Data Visualization */}
         <motion.div
-          className="relative w-full md:w-2/5 h-96 hidden md:flex items-center justify-center"
+          className="relative w-80 h-80 flex items-center justify-center mt-10"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
