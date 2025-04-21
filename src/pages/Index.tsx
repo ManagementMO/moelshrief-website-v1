@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
-import SkillsSection from "@/components/SkillsSection";
+import SkillsMarquee from "@/components/SkillsMarquee";
 import ProjectsSection from "@/components/ProjectsSection";
 import ExperienceSection from "@/components/ExperienceSection";
 import ContactSection from "@/components/ContactSection";
@@ -226,7 +226,7 @@ const Index = () => {
         <main>
           <HeroSection />
           <AboutSection />
-          <SkillsSection />
+          <SkillsMarquee />
           <ProjectsSection />
           <ExperienceSection />
           <ContactSection />
