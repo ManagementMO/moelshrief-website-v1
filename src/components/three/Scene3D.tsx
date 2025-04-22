@@ -40,7 +40,7 @@ export const Scene3D = ({
         <pointLight position={[-10, -10, -10]} color="purple" intensity={0.5} />
         
         <Suspense fallback={null}>
-          <ErrorBoundary FallbackComponent={() => <ErrorFallback />}>
+          <ErrorBoundary FallbackComponent={ErrorFallback}>
             <ProfilePicture3D />
             {children}
           </ErrorBoundary>

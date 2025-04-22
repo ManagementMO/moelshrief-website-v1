@@ -9,16 +9,22 @@ export const ProfilePicture3D = () => {
   const [textureLoaded, setTextureLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
   
-  // Use useTexture to load the texture
-  const texture = useTexture('/lovable-uploads/9ad28947-10af-4c6d-b967-731db0e3ad4a.png', (texture) => {
-    // Success callback
-    console.log("Texture loaded successfully");
-    setTextureLoaded(true);
-  }, () => {
-    // Error callback
-    console.error("Error loading texture");
-    setHasError(true);
-  });
+  // Load the texture
+  const texture = useTexture('/lovable-uploads/9ad28947-10af-4c6d-b967-731db0e3ad4a.png');
+  
+  // Handle texture loading and errors
+  useEffect(() => {
+    if (texture) {
+      console.log("Texture loaded successfully");
+      setTextureLoaded(true);
+      
+      // Add error handling
+      texture.onError = () => {
+        console.error("Error loading texture");
+        setHasError(true);
+      };
+    }
+  }, [texture]);
   
   useFrame((state) => {
     if (!meshRef.current) return;
