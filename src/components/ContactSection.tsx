@@ -1,4 +1,3 @@
-
 import { FormEvent, useState } from "react";
 import { FuturisticButton } from "./ui/futuristic-button";
 
@@ -170,7 +169,7 @@ const ContactSection = () => {
                     </div>
                     <div>
                       <h4 className="font-semibold text-lg">Email</h4>
-                      <a href="mailto:contact@moelshrief.com" className="text-futuristic-purple hover:underline">contact@moelshrief.com</a>
+                      <a href="mailto:mkelshri@uwaterloo.ca" className="text-futuristic-purple hover:underline">mkelshri@uwaterloo.ca</a>
                       <p className="text-sm text-muted-foreground mt-1">Feel free to email me anytime</p>
                     </div>
                   </div>
@@ -184,7 +183,8 @@ const ContactSection = () => {
                     </div>
                     <div>
                       <h4 className="font-semibold text-lg">Location</h4>
-                      <p>New York, United States</p>
+                      <p>University of Waterloo</p>
+                      <p className="text-sm text-muted-foreground mt-1">200 University Ave W, Waterloo, ON N2L 3G1, Canada</p>
                       <p className="text-sm text-muted-foreground mt-1">Available for remote work globally</p>
                     </div>
                   </div>
