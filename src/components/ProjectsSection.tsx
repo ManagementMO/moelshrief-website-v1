@@ -1,9 +1,9 @@
-
 import { useState } from "react";
 import { FuturisticButton } from "./ui/futuristic-button";
 
 const ProjectsSection = () => {
   const [activeCategory, setActiveCategory] = useState<string>("all");
+  const [visibleProjects, setVisibleProjects] = useState(4);
   
   // Project data
   const projects = [
@@ -68,6 +68,14 @@ const ProjectsSection = () => {
     ? projects 
     : projects.filter(project => project.category === activeCategory);
   
+  // Get visible projects
+  const projectsToShow = filteredProjects.slice(0, visibleProjects);
+  
+  // Function to show more projects
+  const showMoreProjects = () => {
+    setVisibleProjects(prev => Math.min(prev + 4, filteredProjects.length));
+  };
+  
   // Categories for filter
   const categories = [
     { id: "all", name: "All Projects" },
@@ -84,10 +92,6 @@ const ProjectsSection = () => {
     >
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="inline-block px-3 py-1 rounded-full text-sm bg-futuristic-purple/10 text-futuristic-purple mb-4">
-            Projects
-          </span>
-          
           <h2 className="text-4xl font-bold mb-6">
             Featured <span className="text-futuristic-blue">Data Projects</span>
           </h2>
@@ -116,8 +120,8 @@ const ProjectsSection = () => {
         </div>
         
         {/* Projects grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map(project => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+          {projectsToShow.map(project => (
             <div 
               key={project.id} 
               className="group relative overflow-hidden rounded-2xl glass-effect transition-all duration-300 hover:shadow-glow-md hover:scale-[1.02]"
@@ -185,7 +189,7 @@ const ProjectsSection = () => {
         </div>
         
         {/* CTA */}
-        <div className="text-center mt-16">
+        <div className="text-center mt-12">
           <FuturisticButton 
             variant="outline" 
             size="lg"

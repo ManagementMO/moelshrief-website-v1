@@ -30,13 +30,6 @@ const AboutSection = () => {
       
       <div className="container mx-auto px-8 relative z-10">
         <div className="max-w-screen-xl mx-auto">
-          {/* Section label */}
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="inline-block px-3 py-1 rounded-full text-sm bg-futuristic-purple/10 text-futuristic-purple mb-4">
-              About
-            </span>
-          </div>
-          
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
             {/* Left column - image with 3D effect */}
             <motion.div 

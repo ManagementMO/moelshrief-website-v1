@@ -45,10 +45,6 @@ const ContactSection = () => {
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="inline-block px-3 py-1 rounded-full text-sm bg-futuristic-purple/10 text-futuristic-purple mb-4">
-            Get In Touch
-          </span>
-          
           <h2 className="text-4xl font-bold mb-6">
             Let's <span className="text-futuristic-purple">Connect</span>
           </h2>
