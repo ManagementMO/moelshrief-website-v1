@@ -58,7 +58,7 @@ const AboutSection = () => {
                   <img 
                     alt="Mohammed Elshrief" 
                     className="w-full h-full object-cover transition-transform duration-200"
-                    src="/lovable-uploads/2e9dfaef-cb16-46ec-bfb7-62c0796153aa.jpg" 
+                    src="/images/profile.jpg" 
                   />
                   
                   {/* Glass overlay */}

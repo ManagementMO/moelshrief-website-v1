@@ -1,4 +1,3 @@
-
 import React, { useRef, useEffect, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Sphere, MeshDistortMaterial, OrbitControls, PerspectiveCamera } from '@react-three/drei';
@@ -12,7 +11,7 @@ interface HeroScene3DProps {
   profileImage?: string;
 }
 
-const AnimatedPhotoSphere = ({ strength = 0.3, scale = 1.5, speed = 0.3, profileImage = "/lovable-uploads/9ad28947-10af-4c6d-b967-731db0e3ad4a.png" }: HeroScene3DProps) => {
+const AnimatedPhotoSphere = ({ strength = 0.3, scale = 1.5, speed = 0.3, profileImage = "/images/profile.jpg" }: HeroScene3DProps) => {
   const theme = useTheme();
   const sphereRef = useRef<THREE.Mesh>(null);
   const [hovered, setHovered] = useState(false);
