@@ -1,7 +1,8 @@
+
 import React, { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
-import { ParticleField } from './ParticleField';
+import { ProfilePicture3D } from './ProfilePicture3D';
 
 interface Scene3DProps {
   children?: React.ReactNode;
@@ -11,25 +12,28 @@ interface Scene3DProps {
 
 export const Scene3D = ({
   children,
-  cameraPosition = [0, 0, 5],
-  controlsEnabled = false
+  cameraPosition = [0, 0, 3],
+  controlsEnabled = true
 }: Scene3DProps) => {
   return (
     <div className="absolute inset-0 -z-10">
       <Canvas>
         <PerspectiveCamera makeDefault position={cameraPosition} />
-        {controlsEnabled && <OrbitControls enableZoom={false} enablePan={false} />}
+        <OrbitControls 
+          enableZoom={false} 
+          enablePan={false}
+          minPolarAngle={Math.PI / 2}
+          maxPolarAngle={Math.PI / 2}
+        />
         
-        <ambientLight intensity={0.3} />
+        <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} intensity={0.8} />
         <pointLight position={[-10, -10, -10]} color="purple" intensity={0.5} />
         
         <Suspense fallback={null}>
-          <ParticleField />
+          <ProfilePicture3D />
           {children}
         </Suspense>
-        
-        <fog attach="fog" color="#050816" near={3} far={8} />
       </Canvas>
     </div>
   );
