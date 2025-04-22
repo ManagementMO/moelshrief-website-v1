@@ -1,3 +1,4 @@
+
 import { createContext, useContext } from 'react';
 
 export interface ThemeContextType {
@@ -13,9 +14,11 @@ export interface ThemeContextType {
   backgroundHue: number;
   backgroundSaturation: number;
   backgroundLightness: number;
+  mode?: 'dark' | 'light';
+  toggleTheme?: () => void;
 }
 
-// Default cyberpunk theme values
+// Default cyberpunk theme values (dark mode)
 const defaultTheme: ThemeContextType = {
   // Neon magenta
   primaryHue: 268,
@@ -36,6 +39,9 @@ const defaultTheme: ThemeContextType = {
   backgroundHue: 225,
   backgroundSaturation: 70,
   backgroundLightness: 3,
+  
+  mode: 'dark',
+  toggleTheme: () => {}
 };
 
 export const ThemeContext = createContext<ThemeContextType>(defaultTheme);

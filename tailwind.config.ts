@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss"
 import { fontFamily } from "tailwindcss/defaultTheme"
 import tailwindcssAnimate from "tailwindcss-animate"
@@ -93,6 +94,22 @@ const config = {
           '0%, 100%': { opacity: 1, boxShadow: '0 0 5px var(--tw-shadow-color)' },
           '50%': { opacity: 0.7, boxShadow: '0 0 15px var(--tw-shadow-color)' },
         },
+        'float-up': {
+          '0%': { transform: 'translateY(20px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+        'float-down': {
+          '0%': { transform: 'translateY(-20px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+        'float-left': {
+          '0%': { transform: 'translateX(20px)', opacity: '0' },
+          '100%': { transform: 'translateX(0)', opacity: '1' },
+        },
+        'float-right': {
+          '0%': { transform: 'translateX(-20px)', opacity: '0' },
+          '100%': { transform: 'translateX(0)', opacity: '1' },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -100,6 +117,10 @@ const config = {
         "caret-blink": "caret-blink 1.25s ease-out infinite",
         'pulse-glow-primary': 'pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite [shadow-color:hsl(var(--primary))]',
         'pulse-glow-secondary': 'pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite [shadow-color:hsl(var(--secondary))]',
+        'float-up': 'float-up 0.8s ease-out',
+        'float-down': 'float-down 0.8s ease-out',
+        'float-left': 'float-left 0.8s ease-out',
+        'float-right': 'float-right 0.8s ease-out',
       },
     },
   },

@@ -13,6 +13,7 @@ import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import ExperiencePage from "./pages/ExperiencePage";
 
+// Create a QueryClient instance
 const queryClient = new QueryClient();
 
 const App = () => (

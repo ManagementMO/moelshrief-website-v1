@@ -1,4 +1,6 @@
+
 import React, { useMemo } from "react";
+import { useTheme } from "@/hooks/use-theme";
 
 interface Skill {
   name: string;
@@ -38,8 +40,9 @@ const secondRowSkills: Skill[] = [
   { name: "VS Code", icon: "visualstudiocode", color: "#007ACC" },
 ];
 
-// Component for a single skill item with RTX-style glass effect
-const NeomorphicSkillItem: React.FC<{ skill: Skill; index: number }> = ({ skill, index }) => {
+// Component for a single skill item with glass effect
+const GlassSkillItem: React.FC<{ skill: Skill; index: number }> = ({ skill, index }) => {
+  const theme = useTheme();
   // Use SimpleIcons which has great reliability
   const iconUrl = `https://cdn.simpleicons.org/${skill.icon}/${skill.color.replace('#', '')}`;
   
@@ -62,25 +65,22 @@ const NeomorphicSkillItem: React.FC<{ skill: Skill; index: number }> = ({ skill,
     return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
   }, [skill.color]);
 
+  const isDark = theme.mode === 'dark';
+
   return (
     <div 
-      className="flex flex-col items-center gap-3 min-w-[150px] group" 
+      className="flex flex-col items-center gap-3 min-w-[130px] group" 
       style={{ perspective: "1500px" }}
     >
       <div 
-        className="relative h-32 w-32 rounded-2xl flex items-center justify-center p-6 overflow-hidden transition-all duration-500 ease-out transform hover:scale-110 hover:-translate-y-2 group-hover:shadow-2xl"
+        className="relative h-24 w-24 rounded-xl flex items-center justify-center p-5 overflow-hidden transition-all duration-500 ease-out transform hover:scale-110 hover:-translate-y-2 group-hover:shadow-lg glass-card"
         style={{
-          background: `linear-gradient(135deg, rgba(20,20,20,0.8), rgba(10,10,10,0.9))`,
-          backdropFilter: 'blur(20px) saturate(180%)',
-          border: '1px solid rgba(255, 255, 255, 0.15)',
-          boxShadow: `0 15px 35px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.1), 0 0 15px rgba(${parseInt(skill.color.slice(1, 3), 16)}, ${parseInt(skill.color.slice(3, 5), 16)}, ${parseInt(skill.color.slice(5, 7), 16)}, 0.15)`,
           transition: `all 0.6s cubic-bezier(0.19, 1, 0.22, 1) ${hoverDelayMs}ms`,
-          transformStyle: 'preserve-3d',
         }}
       >
         {/* Subtle color accent ring in skill color */}
         <div 
-          className="absolute inset-0 rounded-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-700"
+          className="absolute inset-0 rounded-xl opacity-20 group-hover:opacity-40 transition-opacity duration-700"
           style={{
             background: `radial-gradient(circle at center, ${skill.color}33 0%, transparent 70%)`,
             border: `1px solid ${skill.color}22`,
@@ -89,27 +89,21 @@ const NeomorphicSkillItem: React.FC<{ skill: Skill; index: number }> = ({ skill,
 
         {/* Top glossy highlight */}
         <div 
-          className="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-white/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity rounded-t-2xl"
-          style={{ 
-            transformStyle: 'preserve-3d',
-            transform: 'translateZ(2px)' 
-          }}
+          className={`absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-white/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity rounded-t-xl ${isDark ? 'from-white/15' : 'from-white/30'}`}
         ></div>
         
-        {/* Icon with floating 3D effect */}
+        {/* Icon */}
         <div 
-          className="w-20 h-20 relative z-10 transition-all duration-700 ease-out group-hover:scale-110 group-hover:rotate-6"
+          className="w-14 h-14 relative z-10 transition-all duration-700 ease-out group-hover:scale-110 group-hover:rotate-3"
           style={{ 
-            transformStyle: 'preserve-3d',
-            transform: 'translateZ(40px)', // Stronger 3D pop out
-            filter: `drop-shadow(0 10px 15px rgba(0,0,0,0.6)) drop-shadow(0 0 10px ${skill.color}55)`
+            filter: `drop-shadow(0 5px 10px rgba(0,0,0,${isDark ? '0.5' : '0.3'})) drop-shadow(0 0 5px ${skill.color}55)`
           }}
         >
           <div className="w-full h-full rounded-full flex items-center justify-center">
             <img
               src={iconUrl}
               alt={`${skill.name} logo`}
-              className="w-16 h-16 object-contain"
+              className="w-12 h-12 object-contain"
               loading="lazy"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
@@ -118,72 +112,28 @@ const NeomorphicSkillItem: React.FC<{ skill: Skill; index: number }> = ({ skill,
                 target.src = `https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/${skill.icon}.svg`;
                 target.style.filter = `brightness(0) invert(1) drop-shadow(0 0 3px ${skill.color}77)`;
                 
-                // Second fallback: generate rich canvas with icon initials
+                // Second fallback: generate text initials
                 target.onerror = () => {
-                  const canvas = document.createElement('canvas');
-                  canvas.width = 160;
-                  canvas.height = 160;
-                  const ctx = canvas.getContext('2d');
-                  if (ctx) {
-                    // Create glossy button with text
-                    const gradient = ctx.createLinearGradient(0, 0, 0, 160);
-                    gradient.addColorStop(0, lighterColor);
-                    gradient.addColorStop(1, skill.color);
-                    
-                    // Fill background with gradient
-                    ctx.fillStyle = gradient;
-                    ctx.beginPath();
-                    ctx.arc(80, 80, 70, 0, Math.PI * 2);
-                    ctx.fill();
-                    
-                    // Add glass highlight
-                    const highlight = ctx.createLinearGradient(0, 0, 0, 80);
-                    highlight.addColorStop(0, 'rgba(255, 255, 255, 0.7)');
-                    highlight.addColorStop(1, 'rgba(255, 255, 255, 0)');
-                    ctx.fillStyle = highlight;
-                    ctx.beginPath();
-                    ctx.arc(80, 60, 60, 0, Math.PI, true);
-                    ctx.fill();
-                    
-                    // Add text
-                    ctx.fillStyle = '#ffffff';
-                    ctx.font = 'bold 50px Arial';
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'middle';
-                    ctx.fillText(skill.name.substring(0, 2).toUpperCase(), 80, 85);
-                    
-                    // Add shadow
-                    ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
-                    ctx.shadowBlur = 15;
-                    ctx.shadowOffsetY = 8;
-                    ctx.beginPath();
-                    ctx.arc(80, 80, 68, 0, Math.PI * 2);
-                    ctx.stroke();
-                    
-                    target.src = canvas.toDataURL('image/png');
+                  target.src = '';
+                  target.style.display = 'none';
+                  const parent = target.parentElement;
+                  if (parent) {
+                    const textEl = document.createElement('div');
+                    textEl.innerText = skill.name.substring(0, 2).toUpperCase();
+                    textEl.style.fontSize = '20px';
+                    textEl.style.fontWeight = 'bold';
+                    textEl.style.color = skill.color;
+                    textEl.style.filter = `drop-shadow(0 0 5px ${skill.color}44)`;
+                    parent.appendChild(textEl);
                   }
                 };
               }}
             />
           </div>
         </div>
-          
-        {/* Bottom reflection - more pronounced */}
-        <div 
-          className="absolute bottom-0 left-1/4 right-1/4 h-1/3 opacity-50 group-hover:opacity-70 transition-all duration-700"
-          style={{ 
-            background: `linear-gradient(to top, ${skill.color}33, transparent)`,
-            borderRadius: '50%',
-            filter: 'blur(5px)',
-            transform: 'scaleY(0.5) translateY(15px)' 
-          }}
-        ></div>
       </div>
       <span 
-        className="text-base font-semibold text-gray-200 tracking-wide transition-all duration-500 group-hover:text-white"
-        style={{ 
-          textShadow: `0 2px 8px rgba(0,0,0,0.7), 0 0 10px rgba(${parseInt(skill.color.slice(1, 3), 16)}, ${parseInt(skill.color.slice(3, 5), 16)}, ${parseInt(skill.color.slice(5, 7), 16)}, 0.3)`
-        }}
+        className="text-sm font-medium transition-all duration-500 group-hover:text-primary"
       >
         {skill.name}
       </span>
@@ -192,18 +142,19 @@ const NeomorphicSkillItem: React.FC<{ skill: Skill; index: number }> = ({ skill,
 };
 
 export default function SkillsMarquee() {
+  const theme = useTheme();
   // We match animation duration to the number of items to maintain consistent speed
-  const firstRowDuration = `${firstRowSkills.length * 4}s`;
-  const secondRowDuration = `${secondRowSkills.length * 4}s`;
+  const firstRowDuration = `${firstRowSkills.length * 10}s`;
+  const secondRowDuration = `${secondRowSkills.length * 10}s`;
   
-  // Define CSS keyframes for perfect smooth animations
+  // Define CSS keyframes for animations
   const keyframes = `
     @keyframes marquee-rtl {
       0% { transform: translateX(0); }
-      100% { transform: translateX(calc(-150px * ${secondRowSkills.length})); }
+      100% { transform: translateX(calc(-130px * ${secondRowSkills.length})); }
     }
     @keyframes marquee-ltr {
-      0% { transform: translateX(calc(-150px * ${firstRowSkills.length})); }
+      0% { transform: translateX(calc(-130px * ${firstRowSkills.length})); }
       100% { transform: translateX(0); }
     }
     .animate-marquee-rtl {
@@ -215,37 +166,37 @@ export default function SkillsMarquee() {
     .group:hover .pause-on-hover {
       animation-play-state: paused;
     }
-    .text-shadow-glow {
-      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.4);
-    }
   `;
 
   return (
-    <section className="py-24 bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden">
+    <section className="py-16 overflow-hidden relative reveal" id="skills">
       {/* Add the CSS keyframes */}
       <style>{keyframes}</style>
 
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-5 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600">
+      {/* Gradient background with proper blending */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background pointer-events-none"></div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
             Technical Expertise
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             Leveraging cutting-edge tools and technologies to transform complex data into actionable insights
           </p>
         </div>
         
         {/* Row 1: Data Engineering Tools - Left to Right */}
-        <div className="relative mb-14 overflow-hidden group">
+        <div className="relative mb-8 overflow-hidden group">
           {/* Gradient Masks */}
-          <div className="absolute top-0 bottom-0 left-0 w-40 z-10 bg-gradient-to-r from-black via-black/90 to-transparent pointer-events-none"></div>
-          <div className="absolute top-0 bottom-0 right-0 w-40 z-10 bg-gradient-to-l from-black via-black/90 to-transparent pointer-events-none"></div>
+          <div className="absolute top-0 bottom-0 left-0 w-20 z-10 bg-gradient-to-r from-background via-background/90 to-transparent pointer-events-none"></div>
+          <div className="absolute top-0 bottom-0 right-0 w-20 z-10 bg-gradient-to-l from-background via-background/90 to-transparent pointer-events-none"></div>
           
           {/* Infinite Scroll Container */}
-          <div className="flex py-6 w-min animate-marquee-ltr pause-on-hover" style={{ animationDuration: firstRowDuration }}>
+          <div className="flex py-4 w-min animate-marquee-ltr pause-on-hover" style={{ animationDuration: firstRowDuration }}>
             {/* Double the array for seamless looping */}
             {[...firstRowSkills, ...firstRowSkills].map((skill, i) => (
-              <NeomorphicSkillItem key={`ltr-${i}`} skill={skill} index={i} />
+              <GlassSkillItem key={`ltr-${i}`} skill={skill} index={i} />
             ))}
           </div>
         </div>
@@ -253,14 +204,14 @@ export default function SkillsMarquee() {
         {/* Row 2: Analytics & ML Tools - Right to Left */}
         <div className="relative overflow-hidden group">
           {/* Gradient Masks */}
-          <div className="absolute top-0 bottom-0 left-0 w-40 z-10 bg-gradient-to-r from-black via-black/90 to-transparent pointer-events-none"></div>
-          <div className="absolute top-0 bottom-0 right-0 w-40 z-10 bg-gradient-to-l from-black via-black/90 to-transparent pointer-events-none"></div>
+          <div className="absolute top-0 bottom-0 left-0 w-20 z-10 bg-gradient-to-r from-background via-background/90 to-transparent pointer-events-none"></div>
+          <div className="absolute top-0 bottom-0 right-0 w-20 z-10 bg-gradient-to-l from-background via-background/90 to-transparent pointer-events-none"></div>
           
           {/* Infinite Scroll Container */}
-          <div className="flex py-6 w-min animate-marquee-rtl pause-on-hover" style={{ animationDuration: secondRowDuration }}>
+          <div className="flex py-4 w-min animate-marquee-rtl pause-on-hover" style={{ animationDuration: secondRowDuration }}>
             {/* Double the array for seamless looping */}
             {[...secondRowSkills, ...secondRowSkills].map((skill, i) => (
-              <NeomorphicSkillItem key={`rtl-${i}`} skill={skill} index={i} />
+              <GlassSkillItem key={`rtl-${i}`} skill={skill} index={i} />
             ))}
           </div>
         </div>
