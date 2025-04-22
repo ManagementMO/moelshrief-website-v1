@@ -7,27 +7,18 @@ import * as THREE from 'three';
 export const ProfilePicture3D = () => {
   const meshRef = useRef<THREE.Mesh>(null);
   const [textureLoaded, setTextureLoaded] = useState(false);
+  const [hasError, setHasError] = useState(false);
   
-  // Use useTexture correctly - it returns the texture directly
-  const texture = useTexture('/lovable-uploads/9ad28947-10af-4c6d-b967-731db0e3ad4a.png');
-  
-  // Set up effect to handle texture loading
-  useEffect(() => {
-    if (texture) {
-      console.log("Texture loaded successfully");
-      setTextureLoaded(true);
-      
-      // Add event listener for error handling
-      const handleError = () => {
-        console.error("Error loading texture");
-      };
-      
-      texture.addEventListener('error', handleError);
-      return () => {
-        texture.removeEventListener('error', handleError);
-      };
-    }
-  }, [texture]);
+  // Use useTexture to load the texture
+  const texture = useTexture('/lovable-uploads/9ad28947-10af-4c6d-b967-731db0e3ad4a.png', (texture) => {
+    // Success callback
+    console.log("Texture loaded successfully");
+    setTextureLoaded(true);
+  }, () => {
+    // Error callback
+    console.error("Error loading texture");
+    setHasError(true);
+  });
   
   useFrame((state) => {
     if (!meshRef.current) return;
@@ -43,7 +34,7 @@ export const ProfilePicture3D = () => {
       ref={meshRef}
       args={[3, 3]} // Adjust size as needed
     >
-      {textureLoaded ? (
+      {textureLoaded && !hasError ? (
         <meshStandardMaterial
           map={texture}
           transparent
