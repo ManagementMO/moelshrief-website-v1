@@ -8,16 +8,26 @@ export const ProfilePicture3D = () => {
   const meshRef = useRef<THREE.Mesh>(null);
   const [textureLoaded, setTextureLoaded] = useState(false);
   
-  // Use useTexture with the correct API
-  const texture = useTexture('/lovable-uploads/9ad28947-10af-4c6d-b967-731db0e3ad4a.png', {
-    onLoad: () => {
+  // Use useTexture correctly - it returns the texture directly
+  const texture = useTexture('/lovable-uploads/9ad28947-10af-4c6d-b967-731db0e3ad4a.png');
+  
+  // Set up effect to handle texture loading
+  useEffect(() => {
+    if (texture) {
       console.log("Texture loaded successfully");
       setTextureLoaded(true);
-    },
-    onError: (error) => {
-      console.error("Error loading texture:", error);
+      
+      // Add event listener for error handling
+      const handleError = () => {
+        console.error("Error loading texture");
+      };
+      
+      texture.addEventListener('error', handleError);
+      return () => {
+        texture.removeEventListener('error', handleError);
+      };
     }
-  });
+  }, [texture]);
   
   useFrame((state) => {
     if (!meshRef.current) return;
