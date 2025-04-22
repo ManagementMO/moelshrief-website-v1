@@ -1,9 +1,7 @@
-
 import { useEffect, useRef, useState } from "react";
 import { Button } from "./ui/button";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { Scene3D } from "./three/Scene3D";
 
 const HeroSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -82,7 +80,7 @@ const HeroSection = () => {
       <div className="relative container mx-auto px-6 z-10 flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
         {/* Text content */}
         <motion.div 
-          className="w-full lg:w-1/2 z-10"
+          className="w-full lg:w-3/5"
           style={{ opacity: headerOpacity, y: headerY }}
         >
           <div className="relative">
@@ -167,28 +165,6 @@ const HeroSection = () => {
                 Get In Touch
               </Button>
             </motion.div>
-          </div>
-        </motion.div>
-        
-        {/* 3D visualization with profile photo */}
-        <motion.div 
-          className="w-full lg:w-1/2 aspect-square max-w-[500px] relative z-10"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.5, delay: 0.5 }}
-          style={{
-            transform: `perspective(1000px) rotateY(${mousePosition.x * 5}deg) rotateX(${-mousePosition.y * 5}deg)`,
-            transition: 'transform 0.5s cubic-bezier(0.19, 1, 0.22, 1)',
-          }}
-        >
-          <div className="relative w-full h-full rounded-lg overflow-hidden glass-card">
-            {/* Use Scene3D instead of HeroScene3D */}
-            <div className="absolute inset-0">
-              <Scene3D />
-            </div>
-            
-            {/* Overlay effect */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-background/40 to-transparent pointer-events-none"></div>
           </div>
         </motion.div>
       </div>

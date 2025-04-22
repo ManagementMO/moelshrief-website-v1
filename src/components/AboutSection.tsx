@@ -1,19 +1,30 @@
 import { Button } from "./ui/button";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+
 const AboutSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
-  const {
-    scrollYProgress
-  } = useScroll({
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  
+  const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"]
   });
+
   const imageOpacity = useTransform(scrollYProgress, [0, 0.2, 1], [0, 1, 1]);
   const imageScale = useTransform(scrollYProgress, [0, 0.2, 1], [0.8, 1, 1]);
   const contentOpacity = useTransform(scrollYProgress, [0.1, 0.3, 1], [0, 1, 1]);
   const contentY = useTransform(scrollYProgress, [0.1, 0.3, 1], [50, 0, 0]);
-  return <section id="about" ref={sectionRef} className="relative py-36 lg:py-44 overflow-hidden bg-black text-white">
+
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    const { left, top, width, height } = event.currentTarget.getBoundingClientRect();
+    const x = ((event.clientX - left) / width - 0.5) * 2;  // -1 to 1
+    const y = ((event.clientY - top) / height - 0.5) * 2;  // -1 to 1
+    setMousePosition({ x, y });
+  };
+
+  return (
+    <section id="about" ref={sectionRef} className="relative py-28 lg:py-36 overflow-hidden bg-black text-white">
       {/* Subtle grain texture */}
       <div className="absolute inset-0 opacity-20 bg-noise pointer-events-none"></div>
       
@@ -26,34 +37,48 @@ const AboutSection = () => {
           </div>
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-            {/* Left column - image */}
-            <motion.div className="lg:col-span-5 relative" style={{
-            opacity: imageOpacity,
-            scale: imageScale
-          }}>
-              <div className="relative rounded-lg overflow-hidden aspect-[5/6]">
+            {/* Left column - image with 3D effect */}
+            <motion.div 
+              className="lg:col-span-5 relative w-full max-w-md mx-auto"
+              style={{
+                opacity: imageOpacity,
+                scale: imageScale,
+              }}
+            >
+              <motion.div 
+                className="relative rounded-lg overflow-hidden aspect-[4/5]"
+                onMouseMove={handleMouseMove}
+                style={{
+                  transform: `perspective(1000px) rotateY(${mousePosition.x * 5}deg) rotateX(${-mousePosition.y * 5}deg)`,
+                  transition: 'transform 0.1s ease-out',
+                }}
+              >
                 {/* Profile image with premium aesthetic */}
-                <div className="relative w-full h-full">
+                <div className="relative w-full h-full glass-card">
+                  <img 
+                    alt="Mohammed Elshrief" 
+                    className="w-full h-full object-cover transition-transform duration-200"
+                    src="/lovable-uploads/2e9dfaef-cb16-46ec-bfb7-62c0796153aa.jpg" 
+                  />
                   
-                  <img alt="Mohammed Elshrief" className="w-full h-full object-cover" src="/lovable-uploads/2e9dfaef-cb16-46ec-bfb7-62c0796153aa.jpg" />
+                  {/* Glass overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-black/20 to-transparent pointer-events-none" />
                   
-                  {/* Elegant overlay gradient */}
-                  
-                  
-                  {/* Subtle grid pattern */}
-                  
+                  {/* Interactive border glow */}
+                  <div className="absolute inset-0 border border-white/10 rounded-lg" 
+                       style={{
+                         boxShadow: `0 0 20px rgba(255,255,255,${0.1 + (Math.abs(mousePosition.x) + Math.abs(mousePosition.y)) * 0.1})`
+                       }} 
+                  />
                 </div>
-                
-                {/* Accent border */}
-                <div className="absolute inset-0 border border-white/10 rounded-lg pointer-events-none"></div>
-              </div>
+              </motion.div>
             </motion.div>
           
             {/* Right column - content */}
             <motion.div className="lg:col-span-7" style={{
-            opacity: contentOpacity,
-            y: contentY
-          }}>
+              opacity: contentOpacity,
+              y: contentY
+            }}>
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
                 <span className="block">Hi, I'm Mohammed</span>
                 <span className="block bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">I try to make things that work</span>
@@ -121,8 +146,8 @@ const AboutSection = () => {
               
               <div className="flex flex-col sm:flex-row gap-6">
                 <Button className="rounded-full bg-white text-black hover:bg-white/90 px-8 py-6 font-medium tracking-wide text-sm" onClick={() => document.getElementById('experience')?.scrollIntoView({
-                behavior: 'smooth'
-              })}>
+                  behavior: 'smooth'
+                })}>
                   View Experience
                 </Button>
                 
@@ -134,6 +159,8 @@ const AboutSection = () => {
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default AboutSection;
