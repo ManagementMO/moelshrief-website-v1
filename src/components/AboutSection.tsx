@@ -102,7 +102,7 @@ const AboutSection = () => {
                     </div>
                     <h3 className="text-xl font-medium group-hover:text-blue-400 transition-colors duration-300">Data Science</h3>
                   </div>
-                  <p className="text-white/60 pl-16">Python go brrr. Turning coffee into code and data into magic ✨</p>
+                  <p className="text-white/60 pl-16">Python go brrr.</p>
                 </div>
                 
                 <div className="group">
@@ -117,7 +117,7 @@ const AboutSection = () => {
                     </div>
                     <h3 className="text-xl font-medium group-hover:text-purple-400 transition-colors duration-300">Gym Life</h3>
                   </div>
-                  <p className="text-white/60 pl-16">Lifting heavy circles and running in place. Gains &gt; sleep 😴</p>
+                  <p className="text-white/60 pl-16">The circles I lift there are smaller than the ones here.</p>
                 </div>
                 
                 <div className="group">
@@ -132,7 +132,7 @@ const AboutSection = () => {
                     </div>
                     <h3 className="text-xl font-medium group-hover:text-amber-400 transition-colors duration-300">Boba Life</h3>
                   </div>
-                  <p className="text-white/60 pl-16">Boba &gt; water. My code runs on brown sugar milk tea 🧋</p>
+                  <p className="text-white/60 pl-16">Boba > water.</p>
                 </div>
                 
                 <div className="group">
@@ -146,7 +146,7 @@ const AboutSection = () => {
                     </div>
                     <h3 className="text-xl font-medium group-hover:text-green-400 transition-colors duration-300">Gaming</h3>
                   </div>
-                  <p className="text-white/60 pl-16">When I'm not coding, I'm probably dying in a game somewhere 🎮</p>
+                  <p className="text-white/60 pl-16">Overwat.</p>
                 </div>
               </div>
               
