@@ -31,9 +31,10 @@ const AboutSection = () => {
       <div className="container mx-auto px-8 relative z-10">
         <div className="max-w-screen-xl mx-auto">
           {/* Section label */}
-          <div className="flex items-center mb-16">
-            <div className="w-12 h-[1px] bg-white/20 mr-4"></div>
-            <span className="text-xs uppercase tracking-widest text-white/60 font-mono">About</span>
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <span className="inline-block px-3 py-1 rounded-full text-sm bg-futuristic-purple/10 text-futuristic-purple mb-4">
+              About
+            </span>
           </div>
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
