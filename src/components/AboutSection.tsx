@@ -85,9 +85,7 @@ const AboutSection = () => {
               </h2>
               
               <p className="text-lg text-white/70 max-w-xl mb-10 leading-relaxed">
-                As a Data Engineer and Management Consultant, I bridge the gap between technical 
-                implementation and business strategy. I design data systems that transform raw information 
-                into actionable intelligence, enabling organizations to make confident, data-driven decisions.
+                Hey, I'm Mohammed, I'm a data scientist and Management Engineering student at the University of Waterloo (yes, that's a real program). I spend most of my time going to the gym and pretending Python doesn't scare me.
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-14">
