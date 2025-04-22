@@ -35,7 +35,7 @@ const AboutSection = () => {
                 {/* Profile image with premium aesthetic */}
                 <div className="relative w-full h-full">
                   
-                  <img src="/lovable-uploads/a169c866-c182-4c19-bc29-e9c7c0d3877b.png" alt="Mohammed Elshrief" className="w-full h-full object-cover" />
+                  <img alt="Mohammed Elshrief" className="w-full h-full object-cover" src="/lovable-uploads/2e9dfaef-cb16-46ec-bfb7-62c0796153aa.jpg" />
                   
                   {/* Elegant overlay gradient */}
                   
@@ -55,8 +55,8 @@ const AboutSection = () => {
             y: contentY
           }}>
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
-                <span className="block">Turning Complex Data</span>
-                <span className="block bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">Into Strategic Advantage</span>
+                <span className="block">Hey, its mo</span>
+                <span className="block bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">I try to make things that work</span>
               </h2>
               
               <p className="text-lg text-white/70 max-w-xl mb-10 leading-relaxed">
