@@ -34,7 +34,7 @@ const AboutSection = () => {
               <div className="relative rounded-lg overflow-hidden aspect-[5/6]">
                 {/* Profile image with premium aesthetic */}
                 <div className="relative w-full h-full">
-                  <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/10 to-purple-500/10"></div>
+                  
                   <img src="/lovable-uploads/a169c866-c182-4c19-bc29-e9c7c0d3877b.png" alt="Mohammed Elshrief" className="w-full h-full object-cover" />
                   
                   {/* Elegant overlay gradient */}
