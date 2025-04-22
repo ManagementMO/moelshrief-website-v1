@@ -82,13 +82,13 @@ const AboutSection = () => {
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 tracking-tight w-full">
                 <div className="rtx-text-container w-full flex flex-col items-center justify-center space-y-4">
                   <div className="w-full text-center">
-                    <span className="inline-block typing-effect rtx-text" data-text="Hi, I'm Mohammed">Hi, I'm Mohammed</span>
+                    <span className="inline-block typing-effect rtx-text text-white" data-text="Hi, I'm Mohammed">Hi, I'm Mohammed</span>
                   </div>
                   <div className="w-full text-center">
-                    <span className="inline-block typing-effect-2 rtx-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500" data-text="I try to make things that">I try to make things that</span>
+                    <span className="inline-block typing-effect-2 rtx-text text-white" data-text="I try to make things that">I try to make things that</span>
                   </div>
                   <div className="w-full text-center">
-                    <span className="inline-block typing-effect-2 rtx-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500" data-text="wor-">wor-</span>
+                    <span className="inline-block typing-effect-3 rtx-text text-white" data-text="work">work</span>
                   </div>
                 </div>
               </h2>
