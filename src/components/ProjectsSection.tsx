@@ -193,7 +193,7 @@ const ProjectsSection = () => {
           <FuturisticButton 
             variant="outline" 
             size="lg"
-            onClick={() => window.open('https://github.com/yourusername', '_blank')}
+            onClick={() => window.open('https://github.com/ManagementMO', '_blank')}
           >
             View All Projects
           </FuturisticButton>
