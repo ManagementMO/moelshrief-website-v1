@@ -9,22 +9,22 @@ export const ProfilePicture3D = () => {
   const [textureLoaded, setTextureLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
   
-  // Load the texture
-  const texture = useTexture('/lovable-uploads/9ad28947-10af-4c6d-b967-731db0e3ad4a.png');
-  
-  // Handle texture loading and errors
-  useEffect(() => {
-    if (texture) {
-      console.log("Texture loaded successfully");
-      setTextureLoaded(true);
-      
-      // Add error handling
-      texture.onError = () => {
-        console.error("Error loading texture");
-        setHasError(true);
-      };
-    }
-  }, [texture]);
+  // Use try-catch with useTexture hook
+  let texture;
+  try {
+    texture = useTexture('/lovable-uploads/9ad28947-10af-4c6d-b967-731db0e3ad4a.png');
+    
+    // Handle texture loading success
+    useEffect(() => {
+      if (texture) {
+        console.log("Texture loaded successfully");
+        setTextureLoaded(true);
+      }
+    }, [texture]);
+  } catch (error) {
+    console.error("Error loading texture:", error);
+    setHasError(true);
+  }
   
   useFrame((state) => {
     if (!meshRef.current) return;
@@ -40,7 +40,7 @@ export const ProfilePicture3D = () => {
       ref={meshRef}
       args={[3, 3]} // Adjust size as needed
     >
-      {textureLoaded && !hasError ? (
+      {textureLoaded && !hasError && texture ? (
         <meshStandardMaterial
           map={texture}
           transparent
