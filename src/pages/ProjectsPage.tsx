@@ -4,7 +4,6 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { FuturisticButton } from '@/components/ui/futuristic-button';
 import { ArrowRight, ExternalLink, Github } from 'lucide-react';
-import { Scene3D } from '@/components/three/Scene3D';
 import { Link } from 'react-router-dom';
 
 const projects = [
@@ -47,7 +46,6 @@ const ProjectsPage: React.FC = () => {
   
   return (
     <div className="min-h-screen bg-cyber-bg text-cyber-text">
-      <Scene3D />
       <Navbar />
       
       <main className="pt-20 pb-32">

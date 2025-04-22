@@ -5,7 +5,6 @@ import Footer from '@/components/Footer';
 import { FuturisticButton } from '@/components/ui/futuristic-button';
 import { ChevronLeft, ExternalLink, Github, Award, BarChart, Code, BookOpen } from 'lucide-react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { Scene3D } from '@/components/three/Scene3D';
 
 // Project database based on your resume
 const projectsData = {
@@ -69,7 +68,6 @@ What makes FocusForge unique is its integrated approach to student life - combin
     github: 'https://github.com/ManagementMO/focus-forge',
     liveDemo: 'https://focus-forge.netlify.app',
   },
-  // Other projects would be defined similarly
 };
 
 const ProjectDetail: React.FC = () => {
@@ -93,7 +91,6 @@ const ProjectDetail: React.FC = () => {
   
   return (
     <div className="min-h-screen bg-cyber-bg text-cyber-text">
-      <Scene3D />
       <Navbar />
       
       <main className="pt-20 pb-32">

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { Scene3D } from '@/components/three/Scene3D';
 import { FuturisticButton } from '@/components/ui/futuristic-button';
 import { Mail, Phone, MapPin, Send, Linkedin, Github, ExternalLink } from 'lucide-react';
 
@@ -41,7 +40,6 @@ const ContactPage: React.FC = () => {
   
   return (
     <div className="min-h-screen bg-cyber-bg text-cyber-text">
-      <Scene3D />
       <Navbar />
       
       <main className="pt-24 pb-32">

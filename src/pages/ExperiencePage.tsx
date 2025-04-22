@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { Scene3D } from '@/components/three/Scene3D';
 import { Building, Calendar, MapPin, Award, ExternalLink } from 'lucide-react';
 
 const ExperiencePage: React.FC = () => {
@@ -67,7 +66,6 @@ const ExperiencePage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-cyber-bg text-cyber-text">
-      <Scene3D />
       <Navbar />
       
       <main className="pt-24 pb-32">
