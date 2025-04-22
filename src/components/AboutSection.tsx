@@ -85,10 +85,17 @@ const AboutSection = () => {
               opacity: contentOpacity,
               y: contentY
             }}>
-              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 tracking-tight">
-                <div className="rtx-text-container max-w-4xl">
-                  <span className="block typing-effect rtx-text text-left" data-text="Hi, I'm Mohammed">Hi, I'm Mohammed</span>
-                  <span className="block typing-effect-2 rtx-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500" data-text="I try to make things that wor-">I try to make things that wor-</span>
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 tracking-tight w-full">
+                <div className="rtx-text-container w-full flex flex-col items-center justify-center space-y-4">
+                  <div className="w-full text-center">
+                    <span className="inline-block typing-effect rtx-text" data-text="Hi, I'm Mohammed">Hi, I'm Mohammed</span>
+                  </div>
+                  <div className="w-full text-center">
+                    <span className="inline-block typing-effect-2 rtx-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500" data-text="I try to make things that">I try to make things that</span>
+                  </div>
+                  <div className="w-full text-center">
+                    <span className="inline-block typing-effect-2 rtx-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500" data-text="wor-">wor-</span>
+                  </div>
                 </div>
               </h2>
               
