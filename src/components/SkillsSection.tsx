@@ -1,4 +1,3 @@
-
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { TechIcon } from "./ui/tech-icon";
@@ -91,15 +90,11 @@ const SkillsSection = () => {
             My Skills
           </motion.span>
           
-          <motion.h2 
-            className="text-4xl font-bold mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            viewport={{ once: true }}
-          >
-            Technical <span className="text-primary">Expertise</span>
-          </motion.h2>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 tracking-tight">
+            <div className="tech-expertise-container">
+              <span className="tech-expertise">Technical Expertise</span>
+            </div>
+          </h2>
           
           <motion.p 
             className="text-muted-foreground"

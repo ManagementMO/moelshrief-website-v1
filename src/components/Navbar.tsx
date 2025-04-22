@@ -41,11 +41,9 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: "About", href: "#about", id: "about" },
-    { name: "Skills", href: "#skills", id: "skills" },
-    { name: "Projects", href: "#projects", id: "projects" },
-    { name: "Experience", href: "#experience", id: "experience" },
-    { name: "Contact", href: "#contact", id: "contact" },
+    { name: "About", href: "/about" },
+    { name: "Projects", href: "/projects" },
+    { name: "Contact", href: "/contact" },
   ];
 
   return (
@@ -62,29 +60,31 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-8 flex justify-between items-center">
         <a href="#home" className="text-xl font-medium">
-          <span className="bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">Mo.</span>Elshrief
+          <span className="bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">Mohammed</span><span className="neon-dot">.</span>Elshrief
         </a>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-4">
-          <ul className="flex space-x-6 mr-4">
+          <ul className="flex space-x-8 mr-6">
             {navLinks.map((link) => (
               <li key={link.name} className="relative">
                 <a
                   href={link.href}
                   className={cn(
-                    "text-sm font-light tracking-wide transition-colors",
-                    activeSection === link.id ? "text-white" : "text-white/50 hover:text-white/80"
+                    "text-sm font-light tracking-wide transition-all duration-300",
+                    activeSection === link.name 
+                      ? "text-white" 
+                      : "text-white/50 hover:text-white/80 hover:scale-105"
                   )}
                   onClick={(e) => {
                     e.preventDefault();
-                    document.getElementById(link.id)?.scrollIntoView({ behavior: 'smooth' });
+                    document.getElementById(link.name.toLowerCase())?.scrollIntoView({ behavior: 'smooth' });
                   }}
                 >
                   {link.name}
-                  {activeSection === link.id && (
+                  {activeSection === link.name.toLowerCase() && (
                     <motion.div
-                      className="absolute -bottom-1 left-0 w-full h-[1px] bg-white"
+                      className="absolute -bottom-1 left-0 w-full h-[1px] bg-gradient-to-r from-blue-400 to-purple-500"
                       layoutId="navIndicator"
                       transition={{ type: "spring", duration: 0.5 }}
                     />
@@ -96,8 +96,8 @@ const Navbar = () => {
           <Button
             variant="outline"
             size="sm"
-            className="rounded-full text-xs border-white/20 hover:bg-white/10 px-5"
-            onClick={() => window.open('/resume.pdf', '_blank')}
+            className="rounded-full text-xs border-white/20 hover:bg-white/10 px-5 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/20"
+            onClick={() => window.open('https://drive.google.com/file/d/1JWCbEcb8gWO-xP2872_9gouoIEv6W-GF/view?usp=sharing', '_blank')}
           >
             Resume
           </Button>
@@ -150,11 +150,11 @@ const Navbar = () => {
                 <motion.a
                   key={link.name}
                   href={link.href}
-                  className="text-3xl font-light my-4 text-white/70 hover:text-white transition-colors"
+                  className="text-3xl font-light my-4 text-white/70 hover:text-white transition-all duration-300 hover:scale-105"
                   onClick={(e) => {
                     e.preventDefault();
                     setMobileMenuOpen(false);
-                    document.getElementById(link.id)?.scrollIntoView({ behavior: 'smooth' });
+                    document.getElementById(link.name.toLowerCase())?.scrollIntoView({ behavior: 'smooth' });
                   }}
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
@@ -173,9 +173,9 @@ const Navbar = () => {
               >
                 <Button 
                   variant="outline"
-                  className="rounded-full border-white/20 hover:bg-white/10 px-8 py-6"
+                  className="rounded-full border-white/20 hover:bg-white/10 px-8 py-6 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/20"
                   onClick={() => {
-                    window.open('/resume.pdf', '_blank');
+                    window.open('https://drive.google.com/file/d/1JWCbEcb8gWO-xP2872_9gouoIEv6W-GF/view?usp=sharing', '_blank');
                     setMobileMenuOpen(false);
                   }}
                 >

@@ -79,77 +79,79 @@ const AboutSection = () => {
               opacity: contentOpacity,
               y: contentY
             }}>
-              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
-                <span className="block">Hi, I'm Mohammed</span>
-                <span className="block bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">I try to make things that work</span>
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 tracking-tight">
+                <div className="rtx-text-container max-w-4xl">
+                  <span className="block typing-effect rtx-text text-left" data-text="Hi, I'm Mohammed">Hi, I'm Mohammed</span>
+                  <span className="block typing-effect-2 rtx-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500" data-text="I try to make things that wor-">I try to make things that wor-</span>
+                </div>
               </h2>
               
-              <p className="text-lg text-white/70 max-w-xl mb-10 leading-relaxed">
+              <p className="text-lg text-white/70 mb-10 leading-relaxed">
                 Hey, I'm Mohammed, I'm a data scientist and Management Engineering student at the University of Waterloo (yes, that's a real program). I spend most of my time going to the gym and pretending Python doesn't scare me.
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-14">
                 <div className="group">
                   <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-full backdrop-blur-sm bg-blue-500/10 flex items-center justify-center border border-blue-500/20 group-hover:bg-blue-500/20 transition-colors duration-300">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-blue-400">
-                        <path d="M9 19V13C9 11.8954 8.10457 11 7 11H5C3.89543 11 3 11.8954 3 13V19C3 20.1046 3.89543 21 5 21H7C8.10457 21 9 20.1046 9 19Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        <path d="M15 19V8C15 6.89543 14.1046 6 13 6H11C9.89543 6 9 6.89543 9 8V19C9 20.1046 9.89543 21 11 21H13C14.1046 21 15 20.1046 15 19Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        <path d="M21 19V5C21 3.89543 20.1046 3 19 3H17C15.8954 3 15 3.89543 15 5V19C15 20.1046 15.8954 21 17 21H19C20.1046 21 21 20.1046 21 19Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    <div className="w-12 h-12 rounded-full backdrop-blur-sm bg-gradient-to-br from-blue-500/30 to-purple-500/30 flex items-center justify-center border border-blue-500/20 group-hover:bg-blue-500/20 transition-all duration-300 shadow-lg rtx-glow">
+                      {/* Enhanced Python Logo with RTX effect */}
+                      <svg width="24" height="24" viewBox="0 0 256 255" className="text-blue-400 transform group-hover:scale-110 transition-transform duration-300">
+                        <path d="M126.916.072c-64.832 0-60.784 28.115-60.784 28.115l.072 29.128h61.868v8.745H41.631S.145 61.355.145 126.77c0 65.417 36.21 63.097 36.21 63.097h21.61v-30.356s-1.165-36.21 35.632-36.21h61.362s34.475.557 34.475-33.319V33.97S194.67.072 126.916.072zM92.802 19.66a11.12 11.12 0 0 1 11.13 11.13 11.12 11.12 0 0 1-11.13 11.13 11.12 11.12 0 0 1-11.13-11.13 11.12 11.12 0 0 1 11.13-11.13z" fill="currentColor" className="glow-stroke"/>
+                        <path d="M128.757 254.126c64.832 0 60.784-28.115 60.784-28.115l-.072-29.127H127.6v-8.745h86.441s41.486 4.705 41.486-60.712c0-65.416-36.21-63.096-36.21-63.096h-21.61v30.355s1.165 36.21-35.632 36.21h-61.362s-34.475-.557-34.475 33.32v56.013s-5.235 33.897 62.518 33.897zm34.114-19.586a11.12 11.12 0 0 1-11.13-11.13 11.12 11.12 0 0 1 11.13-11.131 11.12 11.12 0 0 1 11.13 11.13 11.12 11.12 0 0 1-11.13 11.13z" fill="currentColor" className="glow-stroke"/>
                       </svg>
                     </div>
-                    <h3 className="text-xl font-medium group-hover:text-blue-400 transition-colors duration-300">Data Architecture</h3>
+                    <h3 className="text-xl font-medium group-hover:text-blue-400 transition-colors duration-300">Data Science</h3>
                   </div>
-                  <p className="text-white/60 pl-16">Designing scalable data ecosystems that grow with your business needs.</p>
+                  <p className="text-white/60 pl-16">Python go brrr. Turning coffee into code and data into magic ✨</p>
                 </div>
                 
                 <div className="group">
                   <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-full backdrop-blur-sm bg-purple-500/10 flex items-center justify-center border border-purple-500/20 group-hover:bg-purple-500/20 transition-colors duration-300">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-purple-400">
-                        <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        <path d="M12 20V20.01M18.5 12H18.51M5.5 12H5.51M7.5 7.5L7.51 7.49M16.5 7.5L16.49 7.49M20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    <div className="w-12 h-12 rounded-full backdrop-blur-sm bg-gradient-to-br from-purple-500/30 to-pink-500/30 flex items-center justify-center border border-purple-500/20 group-hover:bg-purple-500/20 transition-all duration-300 shadow-lg rtx-glow">
+                      {/* Dumbbell Logo with RTX effect */}
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-purple-400 transform group-hover:scale-110 transition-transform duration-300">
+                        <path d="M6 7V17M18 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="glow-stroke"/>
+                        <path d="M8 7H4V17H8M16 7H20V17H16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="glow-stroke"/>
+                        <path d="M8 9V15M16 9V15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="glow-stroke"/>
                       </svg>
                     </div>
-                    <h3 className="text-xl font-medium group-hover:text-purple-400 transition-colors duration-300">Insight Generation</h3>
+                    <h3 className="text-xl font-medium group-hover:text-purple-400 transition-colors duration-300">Gym Life</h3>
                   </div>
-                  <p className="text-white/60 pl-16">Extracting meaningful patterns that reveal new business opportunities.</p>
+                  <p className="text-white/60 pl-16">Lifting heavy circles and running in place. Gains &gt; sleep 😴</p>
                 </div>
                 
                 <div className="group">
                   <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-full backdrop-blur-sm bg-blue-500/10 flex items-center justify-center border border-blue-500/20 group-hover:bg-blue-500/20 transition-colors duration-300">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-blue-400">
-                        <path d="M15 5L12 2M12 2L9 5M12 2V8M4 9H2M2 9V17M2 9H8M4 15H8M22 9H20M20 9V17M20 9H14M20 15H16M12 22V16M12 16H16M12 16H8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    <div className="w-12 h-12 rounded-full backdrop-blur-sm bg-gradient-to-br from-amber-500/30 to-orange-500/30 flex items-center justify-center border border-amber-500/20 group-hover:bg-amber-500/20 transition-all duration-300 shadow-lg rtx-glow">
+                      {/* Boba Cup Logo with RTX effect */}
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-amber-400 transform group-hover:scale-110 transition-transform duration-300">
+                        <path d="M7 4h10l1 16H6L7 4z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="glow-stroke"/>
+                        <path d="M10 8a1 1 0 1 0 0 2 1 1 0 0 0 0-2M14 8a1 1 0 1 0 0 2 1 1 0 0 0 0-2" fill="currentColor" className="glow-stroke"/>
+                        <path d="M8 14c2.5 1.5 5.5 1.5 8 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="glow-stroke"/>
                       </svg>
                     </div>
-                    <h3 className="text-xl font-medium group-hover:text-blue-400 transition-colors duration-300">Process Automation</h3>
+                    <h3 className="text-xl font-medium group-hover:text-amber-400 transition-colors duration-300">Boba Life</h3>
                   </div>
-                  <p className="text-white/60 pl-16">Streamlining workflows to enhance efficiency and reduce manual intervention.</p>
+                  <p className="text-white/60 pl-16">Boba &gt; water. My code runs on brown sugar milk tea 🧋</p>
                 </div>
                 
                 <div className="group">
                   <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-full backdrop-blur-sm bg-purple-500/10 flex items-center justify-center border border-purple-500/20 group-hover:bg-purple-500/20 transition-colors duration-300">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-purple-400">
-                        <path d="M17 9L13.9558 13.5662C13.5299 14.1591 12.5728 14.1844 12.1094 13.6148L11.8906 13.3467C11.4272 12.7771 10.4701 12.8024 10.0442 13.3953L7 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        <path d="M22 12C22 16.4183 18.4183 20 14 20C11.9318 20 10.0409 19.1599 8.65099 17.7957C7.20183 16.3687 6.31551 14.38 6.10801 12.2321M14 4C15.6569 4 17.1911 4.52255 18.4138 5.41685M2 12C2 10.113 2.57111 8.36292 3.56164 6.94427C4.45996 5.65869 5.79765 4.68145 7.36132 4.22587" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    <div className="w-12 h-12 rounded-full backdrop-blur-sm bg-gradient-to-br from-green-500/30 to-emerald-500/30 flex items-center justify-center border border-green-500/20 group-hover:bg-green-500/20 transition-all duration-300 shadow-lg rtx-glow">
+                      {/* Gaming Controller Logo with RTX effect */}
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-green-400 transform group-hover:scale-110 transition-transform duration-300">
+                        <path d="M6 12h4m-2-2v4M15 11h.01M18 13h.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="glow-stroke"/>
+                        <path d="M17.5 7h-11A3.5 3.5 0 0 0 3 10.5v3A3.5 3.5 0 0 0 6.5 17h11a3.5 3.5 0 0 0 3.5-3.5v-3A3.5 3.5 0 0 0 17.5 7z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="glow-stroke"/>
                       </svg>
                     </div>
-                    <h3 className="text-xl font-medium group-hover:text-purple-400 transition-colors duration-300">Visual Analytics</h3>
+                    <h3 className="text-xl font-medium group-hover:text-green-400 transition-colors duration-300">Gaming</h3>
                   </div>
-                  <p className="text-white/60 pl-16">Creating intuitive dashboards that make data accessible to all stakeholders.</p>
+                  <p className="text-white/60 pl-16">When I'm not coding, I'm probably dying in a game somewhere 🎮</p>
                 </div>
               </div>
               
               <div className="flex flex-col sm:flex-row gap-6">
-                <Button className="rounded-full bg-white text-black hover:bg-white/90 px-8 py-6 font-medium tracking-wide text-sm" onClick={() => document.getElementById('experience')?.scrollIntoView({
-                  behavior: 'smooth'
-                })}>
-                  View Experience
-                </Button>
-                
-                <Button variant="outline" className="rounded-full border-white/20 hover:bg-white/10 px-8 py-6 font-medium tracking-wide text-sm" onClick={() => window.open('/resume.pdf', '_blank')}>
+                <Button variant="outline" className="rounded-full border-white/20 hover:bg-white/10 px-8 py-6 font-medium tracking-wide text-sm" onClick={() => window.open('https://drive.google.com/file/d/1JWCbEcb8gWO-xP2872_9gouoIEv6W-GF/view?usp=sharing', '_blank')}>
                   Download Resume
                 </Button>
               </div>
