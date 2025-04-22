@@ -155,6 +155,7 @@ const AboutSection = () => {
                   Download Resume
                 </Button>
               </div>
+
             </motion.div>
           </div>
         </div>
