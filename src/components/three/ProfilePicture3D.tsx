@@ -12,7 +12,7 @@ export const ProfilePicture3D = () => {
   // Use try-catch with useTexture hook
   let texture;
   try {
-    texture = useTexture('/lovable-uploads/9ad28947-10af-4c6d-b967-731db0e3ad4a.png');
+    texture = useTexture('/lovable-uploads/63539644-ecbb-4c2a-8504-2ebb3d268afc.png');
     
     // Handle texture loading success
     useEffect(() => {
