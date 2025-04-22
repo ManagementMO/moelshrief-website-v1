@@ -55,7 +55,7 @@ const AboutSection = () => {
             y: contentY
           }}>
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
-                <span className="block">Hey, its mo</span>
+                <span className="block">Hi, I'm Mohammed</span>
                 <span className="block bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">I try to make things that work</span>
               </h2>
               
