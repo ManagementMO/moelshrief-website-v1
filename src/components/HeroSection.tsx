@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "./ui/button";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { HeroScene3D } from "./three/HeroScene3D";
+import { Scene3D } from "./three/Scene3D";
 
 const HeroSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -182,8 +182,10 @@ const HeroSection = () => {
           }}
         >
           <div className="relative w-full h-full rounded-lg overflow-hidden glass-card">
-            {/* 3D visualization using three.js with profile photo */}
-            <HeroScene3D profileImage="/lovable-uploads/9ad28947-10af-4c6d-b967-731db0e3ad4a.png" />
+            {/* Use Scene3D instead of HeroScene3D */}
+            <div className="absolute inset-0">
+              <Scene3D />
+            </div>
             
             {/* Overlay effect */}
             <div className="absolute inset-0 bg-gradient-to-tr from-background/40 to-transparent pointer-events-none"></div>

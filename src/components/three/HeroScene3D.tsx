@@ -1,7 +1,7 @@
 
 import React, { useRef, useEffect, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { Sphere, MeshDistortMaterial, OrbitControls, PerspectiveCamera, useTexture } from '@react-three/drei';
+import { Sphere, MeshDistortMaterial, OrbitControls, PerspectiveCamera } from '@react-three/drei';
 import * as THREE from 'three';
 import { useTheme } from '@/hooks/use-theme';
 
@@ -19,14 +19,9 @@ const AnimatedPhotoSphere = ({ strength = 0.3, scale = 1.5, speed = 0.3, profile
   const { size, viewport } = useThree();
   const aspect = size.width / viewport.width;
   
-  // Use the uploaded profile image
-  const texture = useTexture(profileImage);
-  texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-  
   // Create animated material colors based on theme
   const materialProps = {
     color: new THREE.Color(`hsl(${theme.primaryHue}, ${theme.primarySaturation}%, ${theme.primaryLightness}%)`),
-    attach: "material",
     distort: hovered ? strength * 1.5 : strength,
     speed: 1.5,
     roughness: 0.2,
@@ -55,15 +50,17 @@ const AnimatedPhotoSphere = ({ strength = 0.3, scale = 1.5, speed = 0.3, profile
   return (
     <Sphere 
       ref={sphereRef} 
-      args={[1, 128, 128]} 
+      args={[1, 64, 64]} 
       scale={scale}
       onPointerOver={() => setHovered(true)}
       onPointerOut={() => setHovered(false)}
     >
       <MeshDistortMaterial 
-        {...materialProps}
+        color={materialProps.color}
+        attach="material"
         distort={materialProps.distort}
-        map={texture}
+        speed={materialProps.speed}
+        roughness={materialProps.roughness}
         transparent
         opacity={0.9}
       />
