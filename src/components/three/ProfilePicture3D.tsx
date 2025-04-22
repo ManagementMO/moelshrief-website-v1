@@ -1,5 +1,5 @@
 
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Plane, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
@@ -8,20 +8,16 @@ export const ProfilePicture3D = () => {
   const meshRef = useRef<THREE.Mesh>(null);
   const [textureLoaded, setTextureLoaded] = useState(false);
   
-  // Try to load the profile picture with error handling
-  // Using a different image that we know exists in the project
-  const texture = useTexture('/lovable-uploads/9ad28947-10af-4c6d-b967-731db0e3ad4a.png', 
-    // Success callback
-    () => {
+  // Use useTexture with the correct API
+  const texture = useTexture('/lovable-uploads/9ad28947-10af-4c6d-b967-731db0e3ad4a.png', {
+    onLoad: () => {
       console.log("Texture loaded successfully");
       setTextureLoaded(true);
     },
-    // Error callback
-    (error) => {
+    onError: (error) => {
       console.error("Error loading texture:", error);
-      // We'll still render with a basic material if texture fails
     }
-  );
+  });
   
   useFrame((state) => {
     if (!meshRef.current) return;
