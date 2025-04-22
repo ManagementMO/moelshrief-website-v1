@@ -38,12 +38,10 @@ const AboutSection = () => {
                   <img src="/lovable-uploads/a169c866-c182-4c19-bc29-e9c7c0d3877b.png" alt="Mohammed Elshrief" className="w-full h-full object-cover" />
                   
                   {/* Elegant overlay gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                  
                   
                   {/* Subtle grid pattern */}
-                  <div className="absolute inset-0 opacity-10">
-                    
-                  </div>
+                  
                 </div>
                 
                 {/* Accent border */}
