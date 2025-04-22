@@ -424,7 +424,8 @@ html {
   position: relative;
   z-index: 1;
   display: inline-block;
-  width: fit-content;
+  width: auto;
+  min-width: 100%;
 }
 
 .rtx-text::before {
@@ -452,9 +453,10 @@ html {
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 1rem;
   width: 100%;
+  overflow: visible;
 }
 
 .rtx-text-container::after {
@@ -497,6 +499,8 @@ html {
   display: inline-block;
   color: white;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  width: auto;
+  min-width: 100%;
 }
 
 .typing-effect,
@@ -504,9 +508,11 @@ html {
 .typing-effect-3 {
   position: relative;
   display: inline-block;
-  overflow: hidden;
+  overflow: visible;
   white-space: nowrap;
   border-right: none;
+  width: auto;
+  min-width: 100%;
 }
 
 .typing-effect::before,
@@ -518,9 +524,11 @@ html {
   left: 0;
   width: 0;
   height: 100%;
-  overflow: hidden;
+  overflow: visible;
   white-space: nowrap;
   animation: typing 3s steps(30, end) forwards;
+  color: white;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .typing-effect-2::before {
@@ -743,4 +751,10 @@ html {
   animation: shine 10s infinite;
   pointer-events: none;
   z-index: -1;
+}
+
+.rtx-text-container > div {
+  width: 100%;
+  text-align: center;
+  overflow: visible;
 }
