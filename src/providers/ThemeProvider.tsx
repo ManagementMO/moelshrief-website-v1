@@ -1,4 +1,3 @@
-
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { ThemeContextType, ThemeContext } from '@/hooks/use-theme';
 
@@ -7,52 +6,66 @@ interface ThemeProviderProps {
 }
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-  // Check for user's preferred color scheme or saved preference
-  const [mode, setMode] = useState<'dark' | 'light'>('dark');
+  // Set to dark mode only
+  const [mode, setMode] = useState<'dark'>('dark');
   
-  // Define theme values for dark and light modes
+  // Define theme values for dark mode with RTX-style colors
   const themes = {
     dark: {
-      // Deep purple (dark mode primary)
-      primaryHue: 268,
-      primarySaturation: 92,
-      primaryLightness: 67,
+      // Primary - RTX Cyan
+      primaryHue: 180,
+      primarySaturation: 100,
+      primaryLightness: 50,
       
-      // Cyan (dark mode secondary)
-      secondaryHue: 195,
-      secondarySaturation: 92,
-      secondaryLightness: 67,
+      // Secondary - Electric Blue
+      secondaryHue: 210,
+      secondarySaturation: 100,
+      secondaryLightness: 50,
       
-      // Yellow accent
-      accentHue: 52,
-      accentSaturation: 92,
-      accentLightness: 67,
+      // Accent - Holographic Purple
+      accentHue: 270,
+      accentSaturation: 100,
+      accentLightness: 60,
       
-      // Dark blue-black background
+      // Background - Deep Space Black
       backgroundHue: 225,
       backgroundSaturation: 70,
       backgroundLightness: 3,
-    },
-    light: {
-      // Lighter purple (light mode primary)
-      primaryHue: 268,
-      primarySaturation: 80,
-      primaryLightness: 60,
       
-      // Light blue (light mode secondary)
-      secondaryHue: 210,
-      secondarySaturation: 85,
-      secondaryLightness: 70,
+      // Surface - Dark Glass
+      surfaceHue: 225,
+      surfaceSaturation: 20,
+      surfaceLightness: 10,
       
-      // Amber accent
-      accentHue: 45,
-      accentSaturation: 90,
-      accentLightness: 60,
+      // Border - Subtle Glow
+      borderHue: 210,
+      borderSaturation: 30,
+      borderLightness: 20,
       
-      // Very light gray background
-      backgroundHue: 210,
-      backgroundSaturation: 10,
-      backgroundLightness: 98,
+      // Text - Pure White
+      textHue: 0,
+      textSaturation: 0,
+      textLightness: 100,
+      
+      // Muted - Soft Gray
+      mutedHue: 220,
+      mutedSaturation: 10,
+      mutedLightness: 40,
+      
+      // Success - Neon Green
+      successHue: 120,
+      successSaturation: 100,
+      successLightness: 50,
+      
+      // Warning - Amber Glow
+      warningHue: 45,
+      warningSaturation: 100,
+      warningLightness: 50,
+      
+      // Error - Neon Red
+      errorHue: 0,
+      errorSaturation: 100,
+      errorLightness: 50,
     }
   };
   
@@ -60,14 +73,14 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   useEffect(() => {
     const root = window.document.documentElement;
     root.classList.remove('light', 'dark');
-    root.classList.add(mode);
-  }, [mode]);
+    root.classList.add('dark');
+  }, []);
   
-  // Create the theme context value with both theme values and toggle function
+  // Create the theme context value
   const theme: ThemeContextType = {
-    ...themes[mode],
-    mode,
-    toggleTheme: () => setMode(prevMode => prevMode === 'dark' ? 'light' : 'dark')
+    ...themes.dark,
+    mode: 'dark',
+    toggleTheme: () => {} // Disable theme toggle
   };
   
   return (

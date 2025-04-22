@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from "react";
 import Navbar from "@/components/Navbar";
 import AboutSection from "@/components/AboutSection";
@@ -8,7 +7,6 @@ import ExperienceSection from "@/components/ExperienceSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
-import ThemeToggle from "@/components/ThemeToggle";
 import { motion } from "framer-motion";
 
 const Index = () => {
@@ -35,9 +33,6 @@ const Index = () => {
 
   return (
     <div className="relative min-h-screen bg-background text-foreground overflow-hidden transition-colors duration-300">
-      {/* Theme toggle */}
-      <ThemeToggle />
-      
       {/* Background elements */}
       <div className="fixed inset-0 z-0 opacity-50 pointer-events-none">
         {/* Reduced number of background elements */}

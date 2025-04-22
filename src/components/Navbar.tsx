@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { motion, AnimatePresence } from "framer-motion";
@@ -42,7 +41,6 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: "Home", href: "#home", id: "home" },
     { name: "About", href: "#about", id: "about" },
     { name: "Skills", href: "#skills", id: "skills" },
     { name: "Projects", href: "#projects", id: "projects" },
@@ -68,8 +66,8 @@ const Navbar = () => {
         </a>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-8">
-          <ul className="flex space-x-8 mr-8">
+        <div className="hidden md:flex items-center space-x-4">
+          <ul className="flex space-x-6 mr-4">
             {navLinks.map((link) => (
               <li key={link.name} className="relative">
                 <a
@@ -95,7 +93,7 @@ const Navbar = () => {
               </li>
             ))}
           </ul>
-          <Button 
+          <Button
             variant="outline"
             size="sm"
             className="rounded-full text-xs border-white/20 hover:bg-white/10 px-5"
