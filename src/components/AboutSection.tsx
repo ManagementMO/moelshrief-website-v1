@@ -100,9 +100,11 @@ const AboutSection = () => {
                 <div className="space-y-6">
                   <div className="glass-effect p-6 rounded-xl">
                     <div className="flex items-center gap-4 mb-4">
-                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                        <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                      <div className="w-12 h-12 rounded-full backdrop-blur-sm bg-gradient-to-br from-blue-500/30 to-purple-500/30 flex items-center justify-center border border-blue-500/20 group-hover:bg-blue-500/20 transition-all duration-300 shadow-lg rtx-glow">
+                        {/* Enhanced Python Logo with RTX effect */}
+                        <svg width="24" height="24" viewBox="0 0 256 255" className="text-blue-400 transform group-hover:scale-110 transition-transform duration-300">
+                          <path d="M126.916.072c-64.832 0-60.784 28.115-60.784 28.115l.072 29.128h61.868v8.745H41.631S.145 61.355.145 126.77c0 65.417 36.21 63.097 36.21 63.097h21.61v-30.356s-1.165-36.21 35.632-36.21h61.362s34.475.557 34.475-33.319V33.97S194.67.072 126.916.072zM92.802 19.66a11.12 11.12 0 0 1 11.13 11.13 11.12 11.12 0 0 1-11.13 11.13 11.12 11.12 0 0 1-11.13-11.13 11.12 11.12 0 0 1 11.13-11.13z" fill="currentColor" className="glow-stroke"/>
+                          <path d="M128.757 254.126c64.832 0 60.784-28.115 60.784-28.115l-.072-29.127H127.6v-8.745h86.441s41.486 4.705 41.486-60.712c0-65.416-36.21-63.096-36.21-63.096h-21.61v30.355s1.165 36.21-35.632 36.21h-61.362s-34.475-.557-34.475 33.32v56.013s-5.235 33.897 62.518 33.897zm34.114-19.586a11.12 11.12 0 0 1-11.13-11.13 11.12 11.12 0 0 1 11.13-11.131 11.12 11.12 0 0 1 11.13 11.13 11.12 11.12 0 0 1-11.13 11.13z" fill="currentColor" className="glow-stroke"/>
                         </svg>
                       </div>
                       <h3 className="text-xl font-semibold">Data Science</h3>
@@ -112,9 +114,12 @@ const AboutSection = () => {
 
                   <div className="glass-effect p-6 rounded-xl">
                     <div className="flex items-center gap-4 mb-4">
-                      <div className="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center">
-                        <svg className="w-6 h-6 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                      <div className="w-12 h-12 rounded-full backdrop-blur-sm bg-gradient-to-br from-purple-500/30 to-pink-500/30 flex items-center justify-center border border-purple-500/20 group-hover:bg-purple-500/20 transition-all duration-300 shadow-lg rtx-glow">
+                        {/* Dumbbell Logo with RTX effect */}
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-purple-400 transform group-hover:scale-110 transition-transform duration-300">
+                          <path d="M6 7V17M18 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="glow-stroke"/>
+                          <path d="M8 7H4V17H8M16 7H20V17H16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="glow-stroke"/>
+                          <path d="M8 9V15M16 9V15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="glow-stroke"/>
                         </svg>
                       </div>
                       <h3 className="text-xl font-semibold">Gym Life</h3>
@@ -126,9 +131,12 @@ const AboutSection = () => {
                 <div className="space-y-6">
                   <div className="glass-effect p-6 rounded-xl">
                     <div className="flex items-center gap-4 mb-4">
-                      <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
-                        <svg className="w-6 h-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      <div className="w-12 h-12 rounded-full backdrop-blur-sm bg-gradient-to-br from-amber-500/30 to-orange-500/30 flex items-center justify-center border border-amber-500/20 group-hover:bg-amber-500/20 transition-all duration-300 shadow-lg rtx-glow">
+                        {/* Boba Cup Logo with RTX effect */}
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-amber-400 transform group-hover:scale-110 transition-transform duration-300">
+                          <path d="M7 4h10l1 16H6L7 4z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="glow-stroke"/>
+                          <path d="M10 8a1 1 0 1 0 0 2 1 1 0 0 0 0-2M14 8a1 1 0 1 0 0 2 1 1 0 0 0 0-2" fill="currentColor" className="glow-stroke"/>
+                          <path d="M8 14c2.5 1.5 5.5 1.5 8 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="glow-stroke"/>
                         </svg>
                       </div>
                       <h3 className="text-xl font-semibold">Boba Life</h3>
@@ -138,9 +146,11 @@ const AboutSection = () => {
 
                   <div className="glass-effect p-6 rounded-xl">
                     <div className="flex items-center gap-4 mb-4">
-                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                        <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+                      <div className="w-12 h-12 rounded-full backdrop-blur-sm bg-gradient-to-br from-green-500/30 to-emerald-500/30 flex items-center justify-center border border-green-500/20 group-hover:bg-green-500/20 transition-all duration-300 shadow-lg rtx-glow">
+                        {/* Gaming Controller Logo with RTX effect */}
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-green-400 transform group-hover:scale-110 transition-transform duration-300">
+                          <path d="M6 12h4m-2-2v4M15 11h.01M18 13h.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="glow-stroke"/>
+                          <path d="M17.5 7h-11A3.5 3.5 0 0 0 3 10.5v3A3.5 3.5 0 0 0 6.5 17h11a3.5 3.5 0 0 0 3.5-3.5v-3A3.5 3.5 0 0 0 17.5 7z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="glow-stroke"/>
                         </svg>
                       </div>
                       <h3 className="text-xl font-semibold">Gaming</h3>
