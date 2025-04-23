@@ -1,6 +1,10 @@
-const sharp = require('sharp');
-const fs = require('fs');
-const path = require('path');
+import sharp from 'sharp';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+import { existsSync, mkdirSync } from 'fs';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const sizes = [
   { name: 'favicon-16x16.png', size: 16 },
@@ -10,19 +14,19 @@ const sizes = [
   { name: 'android-chrome-512x512.png', size: 512 }
 ];
 
-const inputImage = path.join(__dirname, '../public/images/profile.jpg');
-const outputDir = path.join(__dirname, '../public');
+const inputImage = join(__dirname, '../public/images/profile.jpg');
+const outputDir = join(__dirname, '../public');
 
 // Ensure output directory exists
-if (!fs.existsSync(outputDir)) {
-  fs.mkdirSync(outputDir, { recursive: true });
+if (!existsSync(outputDir)) {
+  mkdirSync(outputDir, { recursive: true });
 }
 
 // Generate each favicon size
 sizes.forEach(({ name, size }) => {
   sharp(inputImage)
     .resize(size, size)
-    .toFile(path.join(outputDir, name))
+    .toFile(join(outputDir, name))
     .then(() => console.log(`Generated ${name}`))
     .catch(err => console.error(`Error generating ${name}:`, err));
 }); 
