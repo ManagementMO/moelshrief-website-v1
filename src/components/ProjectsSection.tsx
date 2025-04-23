@@ -14,7 +14,7 @@ const ProjectsSection = () => {
       id: 1,
       title: "MO-Planner",
       description: "Developed a financial planning tool that utilizes Excel/VBA Formula to forecast student budgets with 90% accuracy to provide consistent and accessible insights. Incorporating features such as automated expense categorization, interactive visualization of spending patterns, and savings calculator.",
-      image: "https://picsum.photos/seed/finance/600/400",
+      image: "/images/projects/vba-finance-tool.jpg",
       category: "finance",
       technologies: ["Microsoft Excel", "VBA", "Python"],
       githubUrl: "https://github.com/ManagementMO/VBA-Financial-Planning-Tool",
@@ -25,21 +25,21 @@ const ProjectsSection = () => {
       id: 2,
       title: "FocusForge",
       description: "Engineered a comprehensive Time Management DSS in Excel/VBA, integrating assignment management with deadline conflict resolution, a dynamic calendar, study tracker, journaling, Kanban board, and automated GPA calculator.",
-      image: "https://picsum.photos/seed/productivity/600/400",
+      image: "/images/projects/focusforge.jpg",
       category: "productivity",
       technologies: ["Microsoft Excel", "VBA", "Gemini API"],
       githubUrl: "https://github.com/ManagementMO/focus-forge",
-      liveUrl: "https://focus-forge.netlify.app",
+      liveUrl: "https://jasooh.github.io/mse-100-launch-page/",
       stats: ["Dynamic Calendar", "AI Integration"]
     },
     {
       id: 3,
       title: "Scam-Mah",
       description: "Engineered an AI-powered spam detection system using StandardScaler and IsolationForest ML algorithms to analyze call patterns and identify potential scams, achieving 90% accuracy in flagging suspicious calls during testing.",
-      image: "https://picsum.photos/seed/security/600/400",
+      image: "/images/projects/scam-mah.jpg",
       category: "ai",
       technologies: ["Python", "Flask", "Machine Learning", "HTML/CSS/JS", "Gemini API"],
-      githubUrl: "https://github.com/ManagementMO/scam-mah",
+      githubUrl: "https://github.com/nicholasching/Scam-Mah",
       liveUrl: "https://devpost.com/software/scam-mah",
       stats: ["90% accuracy", "3rd Place NewHacks 2023"]
     },
@@ -47,7 +47,7 @@ const ProjectsSection = () => {
       id: 4,
       title: "Paybridge Technologies",
       description: "Developed a full-stack web application using Python, React.js, and PostgreSQL to streamline money transfers between various financial institutions, focusing on simplifying cross-border transactions.",
-      image: "https://picsum.photos/seed/network/600/400",
+      image: "/images/projects/pay-bridge.jpg",
       category: "web",
       technologies: ["Python", "React.js", "PostgreSQL", "MongoDB", "Docker"],
       githubUrl: "https://github.com/ManagementMO/paybridge",
@@ -117,14 +117,14 @@ const ProjectsSection = () => {
           {projectsToShow.map(project => (
             <motion.div 
               key={project.id} 
-              className="group relative overflow-hidden rounded-2xl glass-effect transition-all duration-300 hover:shadow-glow-md hover:scale-[1.02]"
+              className="group relative overflow-hidden rounded-2xl glass-effect transition-all duration-300 hover:shadow-[0_0_25px_rgba(255,255,255,0.2)] hover:scale-[1.02]"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
               {/* Project image */}
-              <div className="h-56 overflow-hidden">
+              <div className="h-56 overflow-hidden bg-black">
                 <img 
                   src={project.image} 
                   alt={project.title}
@@ -136,7 +136,7 @@ const ProjectsSection = () => {
                 
                 {/* Links */}
                 <div className="absolute top-4 right-4 z-20 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                  {project.githubUrl && (
+                  {project.githubUrl && project.title !== 'Paybridge Technologies' && (
                     <a
                       href={project.githubUrl}
                       target="_blank"
@@ -161,7 +161,7 @@ const ProjectsSection = () => {
               
               {/* Project info */}
               <div className="p-6 relative">
-                <h3 className="text-xl font-bold mb-2 group-hover:text-futuristic-purple transition-colors">
+                <h3 className="text-xl font-bold mb-2 group-hover:text-white group-hover:text-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-colors duration-300">
                   {project.title}
                 </h3>
                 
@@ -175,7 +175,7 @@ const ProjectsSection = () => {
                     {project.stats.map((stat, index) => (
                       <span
                         key={index}
-                        className="text-sm px-3 py-1 rounded-full bg-primary/10 text-primary"
+                        className="text-sm px-3 py-1 rounded-full bg-white/10 text-white shadow-[0_0_10px_rgba(255,255,255,0.5)]"
                       >
                         {stat}
                       </span>
@@ -196,9 +196,9 @@ const ProjectsSection = () => {
               </div>
               
               {/* RTX Effects */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-50" />
-                <div className="absolute -inset-1 bg-gradient-to-r from-primary/0 via-primary/30 to-primary/0 z-10 blur-xl" />
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                <div className="absolute inset-0 bg-gradient-to-t from-white/10 to-transparent opacity-50" />
+                <div className="absolute -inset-1 bg-gradient-to-r from-transparent via-white/15 to-transparent z-10 blur-xl" />
               </div>
             </motion.div>
           ))}
