@@ -1,11 +1,24 @@
 import { Button } from "./ui/button";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import type { CSSProperties } from "react";
 
 const AboutSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [showWorkText, setShowWorkText] = useState(true);
+  const [isZapping, setIsZapping] = useState(false);
+  
+  useEffect(() => {
+    const zapTimer = setTimeout(() => {
+      setIsZapping(true);
+      setTimeout(() => {
+        setShowWorkText(false);
+      }, 1500);
+    }, 1500);
+
+    return () => clearTimeout(zapTimer);
+  }, []);
   
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -89,13 +102,23 @@ const AboutSection = () => {
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 tracking-tight w-full">
                 <div className="rtx-text-container w-full flex flex-col items-center justify-center space-y-4 relative">
                   <div className="w-full text-center">
-                    <span className="inline-block rtx-text text-white">Hi, I'm Mohammed.</span>
+                    <span className="inline-block rtx-text text-white">Hi, I'm Mohammed</span>
                   </div>
                   <div className="w-full text-center">
                     <span className="inline-block rtx-text text-white">I try to make things that</span>
                   </div>
-                  <div className="w-full text-center">
-                    <span className="inline-block rtx-text text-white">work.</span>
+                  <div className="w-full text-center overflow-visible">
+                    {showWorkText && (
+                      <motion.span 
+                        className={`inline-block rtx-text text-white ${isZapping ? 'zap-text glitch-text' : ''} ${!showWorkText ? 'fall-text' : ''}`}
+                        animate={isZapping ? {
+                          scale: [1, 1.1, 1],
+                          transition: { duration: 0.3, repeat: 2 }
+                        } : {}}
+                      >
+                        work
+                      </motion.span>
+                    )}
                   </div>
                 </div>
               </h2>
