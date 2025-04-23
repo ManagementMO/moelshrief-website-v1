@@ -8,7 +8,15 @@ const Footer = () => {
         <div className="grid grid-cols-1 gap-8">
           {/* Logo and description */}
           <div>
-            <a href="#home" className="text-2xl font-bold text-glow">
+            <a 
+              href="/" 
+              className="text-2xl font-bold text-glow"
+              onClick={(e) => {
+                e.preventDefault();
+                window.location.href = '/';
+                window.scrollTo(0, 0);
+              }}
+            >
               Mohammed<span className="text-futuristic-purple">.</span>Elshrief
             </a>
             <p className="mt-4 text-muted-foreground text-sm">

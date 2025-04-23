@@ -59,7 +59,15 @@ const Navbar = () => {
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="container mx-auto px-8 flex justify-between items-center">
-        <a href="#home" className="text-xl font-medium">
+        <a 
+          href="/" 
+          className="text-xl font-medium"
+          onClick={(e) => {
+            e.preventDefault();
+            window.location.href = '/';
+            window.scrollTo(0, 0);
+          }}
+        >
           <span className="bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">Mohammed</span><span className="neon-dot">.</span>Elshrief
         </a>
 
