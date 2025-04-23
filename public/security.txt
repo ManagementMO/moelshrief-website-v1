@@ -2,5 +2,5 @@
 Contact: https://github.com/ManagementMO
 Expires: 2025-12-31T23:59:59.000Z
 Preferred-Languages: en
-Canonical: https://mohammedelshrief.com/.well-known/security.txt
-Policy: https://mohammedelshrief.com/security-policy 
+Canonical: https://moelshrief.wiki/.well-known/security.txt
+Policy: https://moelshrief.wiki/security-policy 
