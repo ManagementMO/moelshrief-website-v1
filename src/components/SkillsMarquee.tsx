@@ -42,7 +42,7 @@ const secondRowSkills: Skill[] = [
 // Component for a single skill item with glass effect
 const GlassSkillItem: React.FC<{ skill: Skill; index: number }> = ({ skill, index }) => {
   const theme = useTheme();
-  const iconUrl = `https://cdn.simpleicons.org/${skill.icon}/${skill.color.replace('#', '')}`;
+  const iconUrl = `https://cdn.simpleicons.org/${skill.icon}`;
   
   const hoverDelayMs = (index % 5) * 50;
   
@@ -114,8 +114,8 @@ const GlassSkillItem: React.FC<{ skill: Skill; index: number }> = ({ skill, inde
               loading="lazy"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
-                target.src = `https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/${skill.icon}.svg`;
-                target.style.filter = `brightness(0) invert(1) drop-shadow(0 0 3px ${skill.color}77)`;
+                target.src = `https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/${skill.icon}.svg`;
+                target.style.filter = `brightness(0) invert(1)`;
                 target.onerror = () => {
                   target.src = '';
                   target.style.display = 'none';
