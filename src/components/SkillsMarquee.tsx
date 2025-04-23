@@ -1,4 +1,3 @@
-
 import React, { useMemo } from "react";
 import { useTheme } from "@/hooks/use-theme";
 
@@ -43,21 +42,16 @@ const secondRowSkills: Skill[] = [
 // Component for a single skill item with glass effect
 const GlassSkillItem: React.FC<{ skill: Skill; index: number }> = ({ skill, index }) => {
   const theme = useTheme();
-  // Use SimpleIcons which has great reliability
   const iconUrl = `https://cdn.simpleicons.org/${skill.icon}/${skill.color.replace('#', '')}`;
   
-  // Calculate offsets for staggered hover animations
   const hoverDelayMs = (index % 5) * 50;
   
-  // Generate a lighter variant of the skill color for gradients
   const lighterColor = useMemo(() => {
-    // Convert hex to RGB for color manipulation
     const hex = skill.color.replace('#', '');
     let r = parseInt(hex.substring(0, 2), 16);
     let g = parseInt(hex.substring(2, 4), 16);
     let b = parseInt(hex.substring(4, 6), 16);
     
-    // Lighten color for gradient effect
     r = Math.min(255, r + 40);
     g = Math.min(255, g + 40);
     b = Math.min(255, b + 40);
@@ -76,43 +70,52 @@ const GlassSkillItem: React.FC<{ skill: Skill; index: number }> = ({ skill, inde
         className="relative h-24 w-24 rounded-xl flex items-center justify-center p-5 overflow-hidden transition-all duration-500 ease-out transform hover:scale-110 hover:-translate-y-2 group-hover:shadow-lg glass-card"
         style={{
           transition: `all 0.6s cubic-bezier(0.19, 1, 0.22, 1) ${hoverDelayMs}ms`,
+          background: `linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05))`,
+          backdropFilter: 'blur(10px)',
+          border: '1px solid rgba(255, 255, 255, 0.1)',
+          boxShadow: `
+            0 8px 32px rgba(0, 0, 0, 0.4),
+            0 4px 16px rgba(0, 0, 0, 0.2),
+            inset 0 0 0 1px rgba(255, 255, 255, 0.08)
+          `
         }}
       >
-        {/* Subtle color accent ring in skill color */}
+        {/* Enhanced color accent ring */}
         <div 
           className="absolute inset-0 rounded-xl opacity-20 group-hover:opacity-40 transition-opacity duration-700"
           style={{
             background: `radial-gradient(circle at center, ${skill.color}33 0%, transparent 70%)`,
             border: `1px solid ${skill.color}22`,
+            boxShadow: `0 0 20px ${skill.color}22`
           }}
         ></div>
 
-        {/* Top glossy highlight */}
+        {/* Enhanced glossy highlight */}
         <div 
-          className={`absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-white/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity rounded-t-xl ${isDark ? 'from-white/15' : 'from-white/30'}`}
+          className={`absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-white/30 to-transparent opacity-60 group-hover:opacity-80 transition-opacity rounded-t-xl ${isDark ? 'from-white/20' : 'from-white/40'}`}
         ></div>
         
-        {/* Icon */}
+        {/* Icon with enhanced effects */}
         <div 
           className="w-14 h-14 relative z-10 transition-all duration-700 ease-out group-hover:scale-110 group-hover:rotate-3"
           style={{ 
-            filter: `drop-shadow(0 5px 10px rgba(0,0,0,${isDark ? '0.5' : '0.3'})) drop-shadow(0 0 5px ${skill.color}55)`
+            filter: `
+              drop-shadow(0 5px 10px rgba(0,0,0,${isDark ? '0.5' : '0.3'})) 
+              drop-shadow(0 0 5px ${skill.color}55)
+              drop-shadow(0 0 10px ${skill.color}33)
+            `
           }}
         >
           <div className="w-full h-full rounded-full flex items-center justify-center">
             <img
               src={iconUrl}
               alt={`${skill.name} logo`}
-              className="w-12 h-12 object-contain"
+              className="w-12 h-12 object-contain transition-all duration-500 group-hover:brightness-110"
               loading="lazy"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
-                
-                // First fallback: try colorized SVG
                 target.src = `https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/${skill.icon}.svg`;
                 target.style.filter = `brightness(0) invert(1) drop-shadow(0 0 3px ${skill.color}77)`;
-                
-                // Second fallback: generate text initials
                 target.onerror = () => {
                   target.src = '';
                   target.style.display = 'none';
@@ -131,9 +134,23 @@ const GlassSkillItem: React.FC<{ skill: Skill; index: number }> = ({ skill, inde
             />
           </div>
         </div>
+
+        {/* Hover glow effect */}
+        <div 
+          className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+          style={{
+            background: `radial-gradient(circle at center, ${skill.color}22 0%, transparent 70%)`,
+            filter: 'blur(20px)'
+          }}
+        ></div>
       </div>
       <span 
-        className="text-sm font-medium transition-all duration-500 group-hover:text-primary"
+        className="text-sm font-medium transition-all duration-500 text-white"
+        style={{
+          textShadow: '0 0 10px rgba(255, 255, 255, 0.3)',
+          filter: 'brightness(1)',
+          transition: 'filter 0.3s ease'
+        }}
       >
         {skill.name}
       </span>
@@ -143,11 +160,9 @@ const GlassSkillItem: React.FC<{ skill: Skill; index: number }> = ({ skill, inde
 
 export default function SkillsMarquee() {
   const theme = useTheme();
-  // We match animation duration to the number of items to maintain consistent speed
   const firstRowDuration = `${firstRowSkills.length * 10}s`;
   const secondRowDuration = `${secondRowSkills.length * 10}s`;
   
-  // Define CSS keyframes for animations
   const keyframes = `
     @keyframes marquee-rtl {
       0% { transform: translateX(0); }
@@ -170,10 +185,8 @@ export default function SkillsMarquee() {
 
   return (
     <section className="py-16 overflow-hidden relative reveal" id="skills">
-      {/* Add the CSS keyframes */}
       <style>{keyframes}</style>
 
-      {/* Gradient background with proper blending */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background pointer-events-none"></div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -188,13 +201,10 @@ export default function SkillsMarquee() {
         
         {/* Row 1: Data Engineering Tools - Left to Right */}
         <div className="relative mb-8 overflow-hidden group">
-          {/* Gradient Masks */}
           <div className="absolute top-0 bottom-0 left-0 w-20 z-10 bg-gradient-to-r from-background via-background/90 to-transparent pointer-events-none"></div>
           <div className="absolute top-0 bottom-0 right-0 w-20 z-10 bg-gradient-to-l from-background via-background/90 to-transparent pointer-events-none"></div>
           
-          {/* Infinite Scroll Container */}
           <div className="flex py-4 w-min animate-marquee-ltr pause-on-hover" style={{ animationDuration: firstRowDuration }}>
-            {/* Double the array for seamless looping */}
             {[...firstRowSkills, ...firstRowSkills].map((skill, i) => (
               <GlassSkillItem key={`ltr-${i}`} skill={skill} index={i} />
             ))}
@@ -203,13 +213,10 @@ export default function SkillsMarquee() {
         
         {/* Row 2: Analytics & ML Tools - Right to Left */}
         <div className="relative overflow-hidden group">
-          {/* Gradient Masks */}
           <div className="absolute top-0 bottom-0 left-0 w-20 z-10 bg-gradient-to-r from-background via-background/90 to-transparent pointer-events-none"></div>
           <div className="absolute top-0 bottom-0 right-0 w-20 z-10 bg-gradient-to-l from-background via-background/90 to-transparent pointer-events-none"></div>
           
-          {/* Infinite Scroll Container */}
           <div className="flex py-4 w-min animate-marquee-rtl pause-on-hover" style={{ animationDuration: secondRowDuration }}>
-            {/* Double the array for seamless looping */}
             {[...secondRowSkills, ...secondRowSkills].map((skill, i) => (
               <GlassSkillItem key={`rtl-${i}`} skill={skill} index={i} />
             ))}

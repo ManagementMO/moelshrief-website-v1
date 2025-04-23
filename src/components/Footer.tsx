@@ -9,21 +9,21 @@ const Footer = () => {
           {/* Logo and description */}
           <div>
             <a href="#home" className="text-2xl font-bold text-glow">
-              Mo<span className="text-futuristic-purple">.</span>Elshrief
+              Mohammed<span className="text-futuristic-purple">.</span>Elshrief
             </a>
             <p className="mt-4 text-muted-foreground text-sm">
-              Transforming data into actionable insights through modern engineering and analytics solutions.
+              Forming insights from data through over-engineering and analysis paralysis.
             </p>
           </div>
         </div>
         
         <div className="mt-10 pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} Mo Elshrief. All rights reserved.
+            &copy; {new Date().getFullYear()} Mohammed Elshrief. All rights reserved.
           </p>
           
           <p className="text-sm text-muted-foreground mt-2 md:mt-0">
-            Built with <span className="text-futuristic-purple">❤</span> using modern web technologies
+            Built with <span className="text-futuristic-purple">❤</span> using Node.js & Vite
           </p>
         </div>
       </div>
