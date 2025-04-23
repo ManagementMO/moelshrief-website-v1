@@ -210,6 +210,7 @@ const ProjectsSection = () => {
             variant="outline" 
             size="lg"
             onClick={() => window.open('https://github.com/ManagementMO', '_blank')}
+            className="border-white/30 text-white hover:bg-white/10 hover:border-white/70 hover:text-white hover:shadow-[0_0_15px_rgba(255,255,255,0.3)] focus:shadow-[0_0_15px_rgba(255,255,255,0.3)] transition-all"
           >
             View All Projects
           </FuturisticButton>
