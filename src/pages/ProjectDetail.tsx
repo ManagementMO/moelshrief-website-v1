@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import { FuturisticButton } from '@/components/ui/futuristic-button';
 import { ChevronLeft, ExternalLink, Github, Award, BarChart, Code, BookOpen } from 'lucide-react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
+import { TechIcon } from '@/components/TechIcon';
 
 // Project database based on your resume
 const projectsData = {
@@ -24,11 +25,7 @@ Key features include expense categorization, budget forecasting, and financial l
       '/images/projects/mo-planner-detail-2.jpg',
       '/images/projects/mo-planner-detail-3.jpg',
     ],
-    technologies: [
-      { name: 'Microsoft Excel', icon: <BarChart className="h-5 w-5" /> },
-      { name: 'VBA', icon: <Code className="h-5 w-5" /> },
-      { name: 'Python', icon: <img src="/icons/python.svg" alt="Python" className="w-5 h-5" /> },
-    ],
+    technologies: ['Microsoft Excel', 'VBA', 'Python'],
     achievements: [
       '90% accuracy in budget forecasting',
       'Shared with over 100 students',
@@ -54,11 +51,7 @@ What makes FocusForge unique is its integrated approach to student life - combin
       '/images/projects/focus-forge-detail-2.jpg',
       '/images/projects/focus-forge-detail-3.jpg',
     ],
-    technologies: [
-      { name: 'Microsoft Excel', icon: <BarChart className="h-5 w-5" /> },
-      { name: 'VBA', icon: <Code className="h-5 w-5" /> },
-      { name: 'Gemini API', icon: <BookOpen className="h-5 w-5" /> },
-    ],
+    technologies: ['Microsoft Excel', 'VBA', 'Gemini API'],
     achievements: [
       'Dynamic calendar system with conflict resolution',
       'Personalized insights through AI recommendations',
@@ -68,6 +61,58 @@ What makes FocusForge unique is its integrated approach to student life - combin
     github: 'https://github.com/ManagementMO/focus-forge',
     liveDemo: 'https://focus-forge.netlify.app',
   },
+  'scam-mah': {
+    title: 'Scam-Mah',
+    subtitle: 'AI-powered Spam Detection',
+    description: 'Engineered an AI-powered spam detection system using StandardScaler and IsolationForest ML algorithms to analyze call patterns and identify potential scams, achieving 90% accuracy in flagging suspicious calls during testing.',
+    longDescription: `Scam-Mah was developed during the NewHacks 2023 hackathon to address the growing problem of phone scams targeting vulnerable populations. Our team recognized that existing solutions were often reactive rather than preventative, and we set out to create a system that could identify potential scams before they cause harm.
+
+The solution uses machine learning algorithms including StandardScaler and IsolationForest to analyze call patterns and identify anomalies that might indicate suspicious activity. By focusing on behavioral patterns rather than simple blacklists, our system can adapt to new types of scams as they emerge.
+
+The project won 3rd place at NewHacks 2023, recognized for its innovative approach to a widespread problem and its potential for real-world application. The combination of Python backend with a Flask web interface makes it accessible to users with varying technical backgrounds.`,
+    tags: ['Python', 'Machine Learning', 'Flask', 'Data Analysis', 'Gemini API'],
+    image: '/images/projects/scam-mah.gif',
+    gallery: [
+      '/images/projects/scam-mah-detail-1.jpg',
+      '/images/projects/scam-mah-detail-2.jpg',
+      '/images/projects/scam-mah-detail-3.jpg',
+    ],
+    technologies: ['Python', 'Flask', 'Machine Learning', 'HTML/CSS/JS', 'Gemini API'],
+    achievements: [
+      '90% accuracy in flagging suspicious calls',
+      '3rd Place at NewHacks 2023',
+      'Innovative use of ML for pattern recognition',
+      'User-friendly interface for non-technical users'
+    ],
+    github: 'https://github.com/ManagementMO/scam-mah',
+    liveDemo: 'https://devpost.com/software/scam-mah',
+  },
+  'paybridge': {
+    title: 'Paybridge',
+    subtitle: 'Financial Transfer Platform',
+    description: 'Developed a full-stack web application using Python, React.js, and PostgreSQL to streamline money transfers between various financial institutions, focusing on simplifying cross-border transactions.',
+    longDescription: `Paybridge is a financial technology platform designed to simplify cross-border money transfers. Built with a modern tech stack including Python, React.js, and PostgreSQL, it addresses the complexities and high fees often associated with international financial transactions.
+
+The platform features a React.js frontend that provides a smooth, intuitive user experience for initiating and tracking transfers. The Python backend handles the complex business logic and security requirements essential for financial applications. Data is securely stored in a PostgreSQL database, while MongoDB is used for caching and performance optimization.
+
+The entire application is containerized using Docker, ensuring consistent deployment across different environments and making scaling straightforward. During the beta testing phase, the platform processed over $1,000 in transactions across 50+ users, validating both the technical implementation and the market need.`,
+    tags: ['Python', 'React.js', 'PostgreSQL', 'MongoDB', 'Docker', 'FinTech'],
+    image: '/images/projects/paybridge.gif',
+    gallery: [
+      '/images/projects/paybridge-detail-1.jpg',
+      '/images/projects/paybridge-detail-2.jpg',
+      '/images/projects/paybridge-detail-3.jpg',
+    ],
+    technologies: ['Python', 'React.js', 'PostgreSQL', 'MongoDB', 'Docker'],
+    achievements: [
+      'Processed $1,000+ in transactions during beta',
+      'Onboarded 50+ users in initial launch',
+      'Reduced transaction fees by 40% compared to traditional methods',
+      'Implemented secure authentication and encryption'
+    ],
+    github: 'https://github.com/ManagementMO/paybridge',
+    liveDemo: 'https://paybridgetech.com/',
+  }
 };
 
 const ProjectDetail: React.FC = () => {
@@ -221,10 +266,11 @@ const ProjectDetail: React.FC = () => {
                         key={idx}
                         className="flex items-center gap-3 p-3 rounded-lg bg-cyber-card/50 border border-cyber-border"
                       >
-                        <div className="p-2 rounded-md bg-cyber-accent/10">
-                          {tech.icon}
-                        </div>
-                        <span>{tech.name}</span>
+                        <TechIcon 
+                          technology={tech} 
+                          className="w-10 h-10 flex-shrink-0"
+                        />
+                        <span className="font-medium">{tech}</span>
                       </div>
                     ))}
                   </div>

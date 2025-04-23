@@ -17,4 +17,7 @@ export default defineConfig(({ mode }) => ({
       { find: /^@\//, replacement: path.resolve(__dirname, "./src") + "/" },
     ],
   },
+  publicDir: "public",
+  base: "./",
+  assetsInclude: ['**/*.svg'],
 }));

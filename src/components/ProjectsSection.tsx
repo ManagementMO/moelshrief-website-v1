@@ -1,5 +1,8 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { FuturisticButton } from "./ui/futuristic-button";
+import { ExternalLink, Github } from "lucide-react";
+import { TechIcon } from "./TechIcon";
 
 const ProjectsSection = () => {
   const [activeCategory, setActiveCategory] = useState<string>("all");
@@ -9,58 +12,48 @@ const ProjectsSection = () => {
   const projects = [
     {
       id: 1,
-      title: "Data Warehouse Architecture",
-      description: "Designed and implemented a cloud-based data warehouse solution using Snowflake, reducing query times by 75% and enabling real-time analytics.",
-      image: "https://placehold.co/600x400/222222/FFFFFF/png?text=Data+Warehouse",
-      category: "engineering",
-      technologies: ["Snowflake", "Airflow", "dbt", "Python"],
-      link: "#",
+      title: "MO-Planner",
+      description: "Developed a financial planning tool that utilizes Excel/VBA Formula to forecast student budgets with 90% accuracy to provide consistent and accessible insights. Incorporating features such as automated expense categorization, interactive visualization of spending patterns, and savings calculator.",
+      image: "https://picsum.photos/seed/finance/600/400",
+      category: "finance",
+      technologies: ["Microsoft Excel", "VBA", "Python"],
+      githubUrl: "https://github.com/ManagementMO/VBA-Financial-Planning-Tool",
+      liveUrl: "https://github.com/ManagementMO/VBA-Financial-Planning-Tool",
+      stats: ["90% accuracy", "100+ students"]
     },
     {
       id: 2,
-      title: "Customer Segmentation Analysis",
-      description: "Developed a machine learning model to segment customers based on behavior and preferences, increasing marketing ROI by 30%.",
-      image: "https://placehold.co/600x400/222222/FFFFFF/png?text=Customer+Segmentation",
-      category: "analysis",
-      technologies: ["Python", "scikit-learn", "Jupyter", "Tableau"],
-      link: "#",
+      title: "FocusForge",
+      description: "Engineered a comprehensive Time Management DSS in Excel/VBA, integrating assignment management with deadline conflict resolution, a dynamic calendar, study tracker, journaling, Kanban board, and automated GPA calculator.",
+      image: "https://picsum.photos/seed/productivity/600/400",
+      category: "productivity",
+      technologies: ["Microsoft Excel", "VBA", "Gemini API"],
+      githubUrl: "https://github.com/ManagementMO/focus-forge",
+      liveUrl: "https://focus-forge.netlify.app",
+      stats: ["Dynamic Calendar", "AI Integration"]
     },
     {
       id: 3,
-      title: "Real-time Analytics Pipeline",
-      description: "Created a streaming data pipeline using Kafka and Spark Streaming for real-time monitoring of user activity and system performance.",
-      image: "https://placehold.co/600x400/222222/FFFFFF/png?text=Streaming+Pipeline",
-      category: "engineering",
-      technologies: ["Kafka", "Spark", "Elasticsearch", "Grafana"],
-      link: "#",
+      title: "Scam-Mah",
+      description: "Engineered an AI-powered spam detection system using StandardScaler and IsolationForest ML algorithms to analyze call patterns and identify potential scams, achieving 90% accuracy in flagging suspicious calls during testing.",
+      image: "https://picsum.photos/seed/security/600/400",
+      category: "ai",
+      technologies: ["Python", "Flask", "Machine Learning", "HTML/CSS/JS", "Gemini API"],
+      githubUrl: "https://github.com/ManagementMO/scam-mah",
+      liveUrl: "https://devpost.com/software/scam-mah",
+      stats: ["90% accuracy", "3rd Place NewHacks 2023"]
     },
     {
       id: 4,
-      title: "Predictive Maintenance Model",
-      description: "Built a predictive model to forecast equipment failures, reducing unplanned downtime by 35% and maintenance costs by 25%.",
-      image: "https://placehold.co/600x400/222222/FFFFFF/png?text=Predictive+Model",
-      category: "machine-learning",
-      technologies: ["Python", "TensorFlow", "Time Series", "IoT"],
-      link: "#",
-    },
-    {
-      id: 5,
-      title: "Financial Data Dashboard",
-      description: "Designed interactive dashboards for financial performance monitoring, providing actionable insights on revenue, expenses, and KPIs.",
-      image: "https://placehold.co/600x400/222222/FFFFFF/png?text=Finance+Dashboard",
-      category: "visualization",
-      technologies: ["PowerBI", "DAX", "SQL", "Financial Modeling"],
-      link: "#",
-    },
-    {
-      id: 6,
-      title: "ETL Process Optimization",
-      description: "Optimized existing ETL processes, reducing processing time by 60% and improving data quality through automated validation.",
-      image: "https://placehold.co/600x400/222222/FFFFFF/png?text=ETL+Optimization",
-      category: "engineering",
-      technologies: ["Python", "Airflow", "SQL", "Docker"],
-      link: "#",
-    },
+      title: "Paybridge Technologies",
+      description: "Developed a full-stack web application using Python, React.js, and PostgreSQL to streamline money transfers between various financial institutions, focusing on simplifying cross-border transactions.",
+      image: "https://picsum.photos/seed/network/600/400",
+      category: "web",
+      technologies: ["Python", "React.js", "PostgreSQL", "MongoDB", "Docker"],
+      githubUrl: "https://github.com/ManagementMO/paybridge",
+      liveUrl: "https://paybridgetech.com/",
+      stats: ["50+ beta users", "$1,000+ transactions"]
+    }
   ];
   
   // Filter projects based on active category
@@ -79,10 +72,10 @@ const ProjectsSection = () => {
   // Categories for filter
   const categories = [
     { id: "all", name: "All Projects" },
-    { id: "engineering", name: "Data Engineering" },
-    { id: "analysis", name: "Data Analysis" },
-    { id: "machine-learning", name: "Machine Learning" },
-    { id: "visualization", name: "Visualization" },
+    { id: "finance", name: "Finance" },
+    { id: "productivity", name: "Productivity" },
+    { id: "ai", name: "AI/ML" },
+    { id: "web", name: "Web Development" },
   ];
   
   return (
@@ -93,11 +86,11 @@ const ProjectsSection = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <h2 className="text-4xl font-bold mb-6">
-            Featured <span className="text-futuristic-blue">Data Projects</span>
+            Featured <span className="text-futuristic-blue">Projects</span>
           </h2>
           
           <p className="text-muted-foreground">
-            Explore my portfolio of data engineering and analytics projects that demonstrate
+            Explore my portfolio of innovative projects that demonstrate
             my technical skills and problem-solving approach.
           </p>
         </div>
@@ -122,9 +115,13 @@ const ProjectsSection = () => {
         {/* Projects grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
           {projectsToShow.map(project => (
-            <div 
+            <motion.div 
               key={project.id} 
               className="group relative overflow-hidden rounded-2xl glass-effect transition-all duration-300 hover:shadow-glow-md hover:scale-[1.02]"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
             >
               {/* Project image */}
               <div className="h-56 overflow-hidden">
@@ -136,6 +133,30 @@ const ProjectsSection = () => {
                 
                 {/* Overlay with gradient */}
                 <div className="absolute inset-0 bg-gradient-to-t from-futuristic-dark to-transparent opacity-60"></div>
+                
+                {/* Links */}
+                <div className="absolute top-4 right-4 z-20 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                  {project.githubUrl && (
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md transition-colors"
+                    >
+                      <Github className="w-5 h-5" />
+                    </a>
+                  )}
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md transition-colors"
+                    >
+                      <ExternalLink className="w-5 h-5" />
+                    </a>
+                  )}
+                </div>
               </div>
               
               {/* Project info */}
@@ -148,43 +169,38 @@ const ProjectsSection = () => {
                   {project.description}
                 </p>
                 
-                {/* Technologies used */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.map(tech => (
-                    <span 
-                      key={tech} 
-                      className="text-xs px-2 py-1 rounded-full bg-white/5 text-white/70"
-                    >
-                      {tech}
-                    </span>
+                {/* Stats */}
+                {project.stats && project.stats.length > 0 && (
+                  <div className="mb-4 flex flex-wrap gap-2">
+                    {project.stats.map((stat, index) => (
+                      <span
+                        key={index}
+                        className="text-sm px-3 py-1 rounded-full bg-primary/10 text-primary"
+                      >
+                        {stat}
+                      </span>
+                    ))}
+                  </div>
+                )}
+                
+                {/* Technologies */}
+                <div className="flex flex-wrap gap-3 mt-6">
+                  {project.technologies.map((tech, index) => (
+                    <TechIcon 
+                      key={index}
+                      technology={tech}
+                      className="transform group-hover:scale-110 transition-transform duration-300"
+                    />
                   ))}
                 </div>
-                
-                <a 
-                  href={project.link} 
-                  className="inline-flex items-center text-futuristic-purple hover:underline"
-                >
-                  View Project
-                  <svg 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    className="h-4 w-4 ml-1" 
-                    fill="none" 
-                    viewBox="0 0 24 24" 
-                    stroke="currentColor"
-                  >
-                    <path 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round" 
-                      strokeWidth={2} 
-                      d="M9 5l7 7-7 7" 
-                    />
-                  </svg>
-                </a>
-                
-                {/* Decorative element */}
-                <div className="absolute -bottom-10 -right-10 w-20 h-20 bg-futuristic-purple/10 rounded-full blur-xl group-hover:bg-futuristic-purple/20 transition-all"></div>
               </div>
-            </div>
+              
+              {/* RTX Effects */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-50" />
+                <div className="absolute -inset-1 bg-gradient-to-r from-primary/0 via-primary/30 to-primary/0 z-10 blur-xl" />
+              </div>
+            </motion.div>
           ))}
         </div>
         

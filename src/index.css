@@ -898,3 +898,13 @@ html {
 .glitch-text {
   animation: text-glitch 0.2s ease-in-out infinite;
 }
+
+@layer utilities {
+  .filter {
+    filter: var(--tw-filter);
+  }
+  
+  .drop-shadow-glow {
+    --tw-filter: drop-shadow(0 0 8px var(--glow-color, rgba(255, 255, 255, 0.5)));
+  }
+}
