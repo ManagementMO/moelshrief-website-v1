@@ -89,13 +89,13 @@ const AboutSection = () => {
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 tracking-tight w-full">
                 <div className="rtx-text-container w-full flex flex-col items-center justify-center space-y-4 relative">
                   <div className="w-full text-center">
-                    <span className="inline-block rtx-text text-white">Hi, I'm Mohammed</span>
+                    <span className="inline-block rtx-text text-white">Hi, I'm Mohammed.</span>
                   </div>
                   <div className="w-full text-center">
                     <span className="inline-block rtx-text text-white">I try to make things that</span>
                   </div>
                   <div className="w-full text-center">
-                    <span className="inline-block rtx-text text-white">work</span>
+                    <span className="inline-block rtx-text text-white">work.</span>
                   </div>
                 </div>
               </h2>
