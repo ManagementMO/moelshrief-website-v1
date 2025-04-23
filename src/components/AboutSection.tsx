@@ -68,7 +68,7 @@ const AboutSection = () => {
               </motion.div>
 
               <div className="mt-8 flex justify-center">
-                <Button variant="outline" className="rounded-full border-white/20 hover:bg-white/10 px-8 py-6 font-medium tracking-wide text-sm" onClick={() => window.open('https://drive.google.com/file/d/1JWCbEcb8gWO-xP2872_9gouoIEv6W-GF/view?usp=sharing', '_blank')}>
+                <Button variant="outline" className="rounded-full border-white/20 hover:bg-white/10 px-8 py-6 font-medium tracking-wide text-sm" onClick={() => window.open('https://www.overleaf.com/read/ttjwbtkcfmmd#a64414', '_blank')}>
                   Download Resume
                 </Button>
               </div>
@@ -80,7 +80,7 @@ const AboutSection = () => {
               y: contentY
             }}>
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 tracking-tight w-full">
-                <div className="rtx-text-container w-full flex flex-col items-center justify-center space-y-4">
+                <div className="rtx-text-container w-full flex flex-col items-center justify-center space-y-4 relative">
                   <div className="w-full text-center">
                     <span className="inline-block typing-effect rtx-text text-white" data-text="Hi, I'm Mohammed">Hi, I'm Mohammed</span>
                   </div>
