@@ -93,6 +93,7 @@ const ContactSection = () => {
                         required
                         value={formData.email}
                         onChange={handleChange}
+                        autoComplete="email"
                         className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 focus:border-futuristic-purple focus:outline-none focus:ring-1 focus:ring-futuristic-purple transition-colors"
                         placeholder="john@example.com"
                       />
