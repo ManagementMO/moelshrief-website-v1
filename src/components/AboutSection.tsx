@@ -97,10 +97,12 @@ const AboutSection = () => {
                 Hey, I'm Mohammed, I'm a data scientist and Management Engineering student at the University of Waterloo (yes, that's a real program). I spend most of my time going to the gym and pretending Python doesn't scare me.
               </p>
               
+              <h3 className="text-2xl font-semibold mb-6 text-center">My Interests:</h3>
+              
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-6">
                   <div className="glass-effect p-6 rounded-xl">
-                    <div className="flex items-center gap-4 mb-4">
+                    <div className="flex items-center gap-4">
                       <div className="w-12 h-12 rounded-full backdrop-blur-sm bg-gradient-to-br from-blue-500/30 to-purple-500/30 flex items-center justify-center border border-blue-500/20 group-hover:bg-blue-500/20 transition-all duration-300 shadow-lg rtx-glow">
                         {/* Enhanced Python Logo with RTX effect */}
                         <svg width="24" height="24" viewBox="0 0 256 255" className="text-blue-400 transform group-hover:scale-110 transition-transform duration-300">
@@ -110,11 +112,10 @@ const AboutSection = () => {
                       </div>
                       <h3 className="text-xl font-semibold">Data Science</h3>
                     </div>
-                    <p className="text-muted-foreground">Python wizard in training. Building ML models and analyzing data to solve real-world problems.</p>
                   </div>
 
                   <div className="glass-effect p-6 rounded-xl">
-                    <div className="flex items-center gap-4 mb-4">
+                    <div className="flex items-center gap-4">
                       <div className="w-12 h-12 rounded-full backdrop-blur-sm bg-gradient-to-br from-purple-500/30 to-pink-500/30 flex items-center justify-center border border-purple-500/20 group-hover:bg-purple-500/20 transition-all duration-300 shadow-lg rtx-glow">
                         {/* Dumbbell Logo with RTX effect */}
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-purple-400 transform group-hover:scale-110 transition-transform duration-300">
@@ -123,15 +124,14 @@ const AboutSection = () => {
                           <path d="M8 9V15M16 9V15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="glow-stroke"/>
                         </svg>
                       </div>
-                      <h3 className="text-xl font-semibold">Gym Life</h3>
+                      <h3 className="text-xl font-semibold">Gym</h3>
                     </div>
-                    <p className="text-muted-foreground">Daily gym enthusiast. The iron paradise is where I recharge and push my limits.</p>
                   </div>
                 </div>
 
                 <div className="space-y-6">
                   <div className="glass-effect p-6 rounded-xl">
-                    <div className="flex items-center gap-4 mb-4">
+                    <div className="flex items-center gap-4">
                       <div className="w-12 h-12 rounded-full backdrop-blur-sm bg-gradient-to-br from-amber-500/30 to-orange-500/30 flex items-center justify-center border border-amber-500/20 group-hover:bg-amber-500/20 transition-all duration-300 shadow-lg rtx-glow">
                         {/* Boba Cup Logo with RTX effect */}
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-amber-400 transform group-hover:scale-110 transition-transform duration-300">
@@ -140,23 +140,21 @@ const AboutSection = () => {
                           <path d="M8 14c2.5 1.5 5.5 1.5 8 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="glow-stroke"/>
                         </svg>
                       </div>
-                      <h3 className="text-xl font-semibold">Boba Life</h3>
+                      <h3 className="text-xl font-semibold">Boba</h3>
                     </div>
-                    <p className="text-muted-foreground">Brown sugar milk tea addict. My best code comes from boba shop coding sessions.</p>
                   </div>
 
                   <div className="glass-effect p-6 rounded-xl">
-                    <div className="flex items-center gap-4 mb-4">
+                    <div className="flex items-center gap-4">
                       <div className="w-12 h-12 rounded-full backdrop-blur-sm bg-gradient-to-br from-green-500/30 to-emerald-500/30 flex items-center justify-center border border-green-500/20 group-hover:bg-green-500/20 transition-all duration-300 shadow-lg rtx-glow">
-                        {/* Gaming Controller Logo with RTX effect */}
+                        {/* Book Logo with RTX effect */}
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-green-400 transform group-hover:scale-110 transition-transform duration-300">
-                          <path d="M6 12h4m-2-2v4M15 11h.01M18 13h.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="glow-stroke"/>
-                          <path d="M17.5 7h-11A3.5 3.5 0 0 0 3 10.5v3A3.5 3.5 0 0 0 6.5 17h11a3.5 3.5 0 0 0 3.5-3.5v-3A3.5 3.5 0 0 0 17.5 7z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="glow-stroke"/>
+                          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="glow-stroke"/>
+                          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="glow-stroke"/>
                         </svg>
                       </div>
-                      <h3 className="text-xl font-semibold">Gaming</h3>
+                      <h3 className="text-xl font-semibold">Reading</h3>
                     </div>
-                    <p className="text-muted-foreground">Casual gamer exploring RTX-enabled worlds. Perfect break from coding sessions.</p>
                   </div>
                 </div>
               </div>
