@@ -1,6 +1,7 @@
 import { Button } from "./ui/button";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
+import type { CSSProperties } from "react";
 
 const AboutSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -23,6 +24,21 @@ const AboutSection = () => {
     setMousePosition({ x, y });
   };
 
+  const imageStyle = {
+    opacity: imageOpacity,
+    scale: imageScale,
+  } as CSSProperties;
+
+  const transformStyle = {
+    transform: `perspective(1000px) rotateY(${mousePosition.x * 5}deg) rotateX(${-mousePosition.y * 5}deg)`,
+    transition: "transform 0.1s ease-out",
+  } as CSSProperties;
+
+  const contentStyle = {
+    opacity: contentOpacity,
+    y: contentY,
+  } as CSSProperties;
+
   return (
     <section id="about" ref={sectionRef} className="relative py-28 lg:py-36 overflow-hidden bg-black text-white">
       {/* Subtle grain texture */}
@@ -34,18 +50,12 @@ const AboutSection = () => {
             {/* Left column - image with 3D effect */}
             <motion.div 
               className="lg:col-span-5 relative w-full max-w-md mx-auto"
-              style={{
-                opacity: imageOpacity,
-                scale: imageScale,
-              }}
+              style={imageStyle}
             >
               <motion.div 
                 className="relative rounded-lg overflow-hidden aspect-[4/5]"
                 onMouseMove={handleMouseMove}
-                style={{
-                  transform: `perspective(1000px) rotateY(${mousePosition.x * 5}deg) rotateX(${-mousePosition.y * 5}deg)`,
-                  transition: 'transform 0.1s ease-out',
-                }}
+                style={transformStyle}
               >
                 {/* Profile image with premium aesthetic */}
                 <div className="relative w-full h-full glass-card">
@@ -75,20 +85,17 @@ const AboutSection = () => {
             </motion.div>
           
             {/* Right column - content */}
-            <motion.div className="lg:col-span-7" style={{
-              opacity: contentOpacity,
-              y: contentY
-            }}>
+            <motion.div className="lg:col-span-7" style={contentStyle}>
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 tracking-tight w-full">
                 <div className="rtx-text-container w-full flex flex-col items-center justify-center space-y-4 relative">
                   <div className="w-full text-center">
-                    <span className="inline-block typing-effect rtx-text text-white" data-text="Hi, I'm Mohammed">Hi, I'm Mohammed</span>
+                    <span className="inline-block rtx-text text-white">Hi, I'm Mohammed</span>
                   </div>
                   <div className="w-full text-center">
-                    <span className="inline-block typing-effect-2 rtx-text text-white" data-text="I try to make things that">I try to make things that</span>
+                    <span className="inline-block rtx-text text-white">I try to make things that</span>
                   </div>
                   <div className="w-full text-center">
-                    <span className="inline-block typing-effect-3 rtx-text text-white" data-text="work">work</span>
+                    <span className="inline-block rtx-text text-white">work</span>
                   </div>
                 </div>
               </h2>
