@@ -125,16 +125,6 @@ const ProjectsSection = () => {
           >
             Featured <span className="text-futuristic-blue">Projects</span>
           </motion.h2>
-          
-          <motion.p 
-            className="text-muted-foreground"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            Don't ask me how any of this works
-          </motion.p>
         </div>
         
         {/* Project filter */}

@@ -31,7 +31,7 @@ const Footer = () => {
           </p>
           
           <p className="text-sm text-muted-foreground mt-2 md:mt-0">
-            Built with <span className="text-futuristic-purple">❤</span> using React.js & Vite
+            Built with <span className="text-futuristic-purple">❤</span> using TypeScript, React, Tailwind, & Vite
           </p>
         </div>
       </div>
