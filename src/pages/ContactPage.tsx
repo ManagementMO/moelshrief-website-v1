@@ -258,7 +258,7 @@ const ContactPage: React.FC = () => {
                     </a>
                     
                     <a 
-                      href="https://moelshrief.com" 
+                      href="https://moelshrief.wiki" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="p-4 rounded-full bg-cyber-card/30 backdrop-blur-sm border border-cyber-border hover:border-cyber-accent/50 transition-colors"

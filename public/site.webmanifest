@@ -1,21 +1,24 @@
 {
-  "name": "Mohammed Elshrief - Data Scientist & Management Engineering Student",
-  "short_name": "Mohammed Elshrief",
-  "description": "Portfolio website of Mohammed Elshrief, a Data Scientist and Management Engineering student at the University of Waterloo.",
+  "name": "Mohammed Elshrief",
+  "short_name": "M.E.",
+  "description": "Data Artisan & Full Stack Developer Portfolio",
   "icons": [
     {
-      "src": "/android-chrome-192x192.png",
+      "src": "/icon-192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
-      "src": "/android-chrome-512x512.png",
+      "src": "/icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ],
-  "theme_color": "#ffffff",
+  "theme_color": "#000000",
   "background_color": "#ffffff",
   "display": "standalone",
-  "start_url": "/"
+  "start_url": "/",
+  "orientation": "portrait"
 } 
