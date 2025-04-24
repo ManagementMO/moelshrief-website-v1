@@ -1,6 +1,6 @@
 # My (Mohammed Elshrief's) Portfolio
 
-A modern, responsive portfolio website showcasing my work as a Data Scientist and Management Engineering student at the University of Waterloo.
+A modern and responsive portfolio website showcasing my work and self. Currently hyper-focused on career/project-related things. Will make it express me as a real human soon enough.
 
 ## 🚀 Live Demo
 
