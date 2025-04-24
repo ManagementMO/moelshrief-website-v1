@@ -4,7 +4,7 @@ A modern, responsive portfolio website showcasing my work as a Data Scientist an
 
 ## 🚀 Live Demo
 
-Visit the live site: [https://moelshrief.netlify.app/](https://moelshrief.netlify.app/)
+Visit the live site @ : [https://moelshrief.netlify.app/](https://moelshrief.netlify.app/) or moelshrief.wiki
 
 ## 🛠️ Built With
 
