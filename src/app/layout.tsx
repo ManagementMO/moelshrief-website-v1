@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://moelshrief.com",
+    url: "https://moelshrief.wiki",
     title: "Mohammed Elshrief | Data Artisan & Full Stack Developer",
     description: "Portfolio of Mohammed Elshrief, a Data Artisan and Full Stack Developer specializing in Excel/VBA, Python, and web development.",
     siteName: "Mohammed Elshrief Portfolio",
