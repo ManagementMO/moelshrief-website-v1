@@ -92,7 +92,7 @@ const SkillsSection = () => {
           
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 tracking-tight">
             <div className="tech-expertise-container">
-              <span className="tech-expertise">Technical Expertise</span>
+              <span className="text-white font-bold tracking-wide [text-shadow:_0_0_10px_rgb(255_255_255_/_70%),_0_0_20px_rgb(255_255_255_/_50%),_0_0_30px_rgb(255_255_255_/_30%)]">Technical Expertise</span>
             </div>
           </h2>
           

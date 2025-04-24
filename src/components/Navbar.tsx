@@ -68,7 +68,9 @@ const Navbar = () => {
             window.scrollTo(0, 0);
           }}
         >
-          <span className="bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">Mohammed</span><span className="neon-dot">.</span>Elshrief
+          <span className="text-white font-medium tracking-wide [text-shadow:_0_0_10px_rgb(255_255_255_/_70%)]">Mohammed</span>
+          <span className="neon-dot text-white [text-shadow:_0_0_10px_rgb(255_255_255_/_100%),_0_0_20px_rgb(255_255_255_/_100%),_0_0_30px_rgb(255_255_255_/_100%)]">.</span>
+          <span className="text-white font-medium tracking-wide [text-shadow:_0_0_10px_rgb(255_255_255_/_70%)]">Elshrief</span>
         </a>
 
         {/* Desktop Navigation */}
