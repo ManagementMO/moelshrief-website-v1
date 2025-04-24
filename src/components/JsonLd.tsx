@@ -5,7 +5,7 @@ export default function JsonLd() {
     "name": "Mohammed Elshrief",
     "alternateName": "Mo Elshrief",
     "description": "Data Artisan and Full Stack Developer specializing in Excel/VBA, Python, and web development",
-    "url": "https://moelshrief.com",
+    "url": "https://moelshrief.wiki",
     "sameAs": [
       "https://github.com/ManagementMO",
       "https://www.linkedin.com/in/mohammed-elshrief" // Add your LinkedIn URL
