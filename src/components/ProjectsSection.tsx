@@ -133,8 +133,7 @@ const ProjectsSection = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            Explore my portfolio of innovative projects that demonstrate
-            my technical skills and problem-solving approach.
+            Don't ask me how any of this works
           </motion.p>
         </div>
         
