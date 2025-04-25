@@ -52,7 +52,7 @@ const ProjectsSection = () => {
       technologies: ["Python", "Flask", "Machine Learning", "HTML/CSS/JS", "Gemini API"],
       githubUrl: "https://github.com/nicholasching/Scam-Mah",
       liveUrl: "https://devpost.com/software/scam-mah",
-      stats: ["90% accuracy", "3rd Place NewHacks 2023"]
+      stats: ["90% accuracy", "3rd Place @ NewHacks 2024"]
     },
     {
       id: 4,
