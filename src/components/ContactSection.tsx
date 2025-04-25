@@ -236,7 +236,7 @@ const ContactSection = () => {
                   <div>
                     <h4 className="font-semibold">Currently Available</h4>
                     <p className="text-sm text-muted-foreground">
-                      Open to freelance projects and full-time opportunities
+                      Open to freelance projects and part-time opportunities
                     </p>
                   </div>
                 </div>
