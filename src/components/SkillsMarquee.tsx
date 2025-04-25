@@ -195,7 +195,8 @@ export default function SkillsMarquee() {
             Stack
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Here are some of the technologies I may or may not know how to use
+            A blend of programming, visualization, and modelling tools that help me turn raw data into real-world impact.
+            
           </p>
         </div>
         
