@@ -1,7 +1,5 @@
 # My (Mohammed Elshrief's) Portfolio
 
-A modern and responsive portfolio website showcasing my work and self. Currently hyper-focused on career/project-related things. Will make it express me as a real human soon enough.
-
 ## 🚀 Live Demo
 
 Visit the live site @ [moelshrief.netlify.app](https://moelshrief.netlify.app) or [moelshrief.wiki](https://moelshrief.wiki)
