@@ -106,7 +106,7 @@ const Navbar = () => {
           <Button
             variant="outline"
             size="sm"
-            className="rounded-full text-xs border-white/20 hover:bg-white/10 px-5 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/20"
+            className="rounded-full text-xs border-white/20 hover:bg-white/10 px-5 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-white/50 hover:text-white"
             onClick={() => window.open('https://www.overleaf.com/read/ttjwbtkcfmmd#a64414', '_blank')}
           >
             Resume
@@ -183,7 +183,7 @@ const Navbar = () => {
               >
                 <Button 
                   variant="outline"
-                  className="rounded-full border-white/20 hover:bg-white/10 px-8 py-6 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/20"
+                  className="rounded-full border-white/20 hover:bg-white/10 px-8 py-6 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-white/50 hover:text-white"
                   onClick={() => {
                     window.open('https://www.overleaf.com/read/ttjwbtkcfmmd#a64414', '_blank');
                     setMobileMenuOpen(false);

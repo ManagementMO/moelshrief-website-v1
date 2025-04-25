@@ -91,7 +91,7 @@ const AboutSection = () => {
               </motion.div>
 
               <div className="mt-8 flex justify-center">
-                <Button variant="outline" className="rounded-full border-white/20 hover:bg-white/10 px-8 py-6 font-medium tracking-wide text-sm" onClick={() => window.open('https://www.overleaf.com/read/ttjwbtkcfmmd#a64414', '_blank')}>
+                <Button variant="outline" className="rounded-full border-white/20 hover:bg-white/10 px-8 py-6 font-medium tracking-wide text-sm hover:shadow-lg hover:shadow-white/50 hover:text-white" onClick={() => window.open('https://www.overleaf.com/read/ttjwbtkcfmmd#a64414', '_blank')}>
                   Download Resume
                 </Button>
               </div>
