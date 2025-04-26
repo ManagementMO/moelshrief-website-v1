@@ -2,7 +2,7 @@
 
 ## 🚀 Live Demo
 
-Visit the live site @ [moelshrief.netlify.app](https://moelshrief.netlify.app) or [moelshrief.wiki](https://moelshrief.wiki)
+Visit the live site @ [moelshrief.netlify.app](https://moelshrief.netlify.app) (v1) or [moelshrief.wiki](https://moelshrief.wiki) (v2)
 
 ## 🛠️ Built With
 
