@@ -1,24 +1,45 @@
 import { Button } from "./ui/button";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring, useMotionValue, useVelocity, useAnimationControls, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import type { CSSProperties } from "react";
+
+const ROTATING_WORDS = ["work", "matter", "inspire", "impact", "help"];
+const WORD_DURATION = 2; // seconds per word
 
 const AboutSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [showWorkText, setShowWorkText] = useState(true);
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [isZapping, setIsZapping] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const [rotation, setRotation] = useState({ x: 0, y: 0 });
+  const [scale, setScale] = useState(1);
+  const [clickCount, setClickCount] = useState(0);
+  const [showEasterEgg, setShowEasterEgg] = useState(false);
+  
+  const controls = useAnimationControls();
+  const velocity = useMotionValue(0);
+  const springConfig = { stiffness: 300, damping: 30 };
   
   useEffect(() => {
     const zapTimer = setTimeout(() => {
       setIsZapping(true);
-      setTimeout(() => {
-        setShowWorkText(false);
-      }, 1500);
     }, 1500);
 
     return () => clearTimeout(zapTimer);
   }, []);
+
+  useEffect(() => {
+    if (clickCount >= 5) {
+      setShowEasterEgg(true);
+      // Reset after 3 seconds
+      const timer = setTimeout(() => {
+        setShowEasterEgg(false);
+        setClickCount(0);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [clickCount]);
   
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -30,26 +51,66 @@ const AboutSection = () => {
   const contentOpacity = useTransform(scrollYProgress, [0.1, 0.3, 1], [0, 1, 1]);
   const contentY = useTransform(scrollYProgress, [0.1, 0.3, 1], [50, 0, 0]);
 
+  // Word rotation effect
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentWordIndex((prev) => (prev + 1) % ROTATING_WORDS.length);
+    }, WORD_DURATION * 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
-    const { left, top, width, height } = event.currentTarget.getBoundingClientRect();
-    const x = ((event.clientX - left) / width - 0.5) * 2;  // -1 to 1
-    const y = ((event.clientY - top) / height - 0.5) * 2;  // -1 to 1
-    setMousePosition({ x, y });
+    if (!isDragging) {
+      const { left, top, width, height } = event.currentTarget.getBoundingClientRect();
+      const x = ((event.clientX - left) / width - 0.5) * 2;  // -1 to 1
+      const y = ((event.clientY - top) / height - 0.5) * 2;  // -1 to 1
+      setMousePosition({ x, y });
+      
+      // Update rotation based on mouse position
+      setRotation({
+        x: y * 20, // Rotate up to 20 degrees on X axis
+        y: x * 20  // Rotate up to 20 degrees on Y axis
+      });
+    }
+  };
+
+  const handleMouseLeave = () => {
+    // Smoothly return to original position
+    controls.start({
+      rotateX: 0,
+      rotateY: 0,
+      transition: { type: "spring", ...springConfig }
+    });
+  };
+
+  const handleClick = () => {
+    setClickCount(prev => prev + 1);
+    // Add a push-in effect
+    controls.start({
+      scale: 0.95,
+      transition: { duration: 0.1 }
+    }).then(() => {
+      controls.start({
+        scale: 1,
+        transition: { type: "spring", ...springConfig }
+      });
+    });
   };
 
   const imageStyle = {
-    opacity: imageOpacity,
-    scale: imageScale,
+    opacity: imageOpacity as unknown as number,
+    scale: imageScale as unknown as number,
   } as CSSProperties;
 
   const transformStyle = {
-    transform: `perspective(1000px) rotateY(${mousePosition.x * 5}deg) rotateX(${-mousePosition.y * 5}deg)`,
+    transform: `perspective(1000px) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
     transition: "transform 0.1s ease-out",
   } as CSSProperties;
 
   const contentStyle = {
-    opacity: contentOpacity,
-    y: contentY,
+    opacity: contentOpacity as unknown as number,
+    y: contentY as unknown as number,
   } as CSSProperties;
 
   return (
@@ -65,10 +126,39 @@ const AboutSection = () => {
               className="lg:col-span-5 relative w-full max-w-md mx-auto"
               style={imageStyle}
             >
+              {/* Easter Egg Text Box */}
+              <AnimatePresence>
+                {showEasterEgg && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 20, scale: 0.8 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -20, scale: 0.8 }}
+                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                    className="absolute -top-16 left-0 right-0 z-50 flex items-center justify-center"
+                  >
+                    <div className="bg-black/30 backdrop-blur-md px-8 py-3 rounded-full border border-white/20 shadow-lg inline-flex items-center justify-center">
+                      <p className="text-white text-lg font-medium whitespace-nowrap flex items-center gap-2">
+                        STOP <span className="text-2xl">😭</span>
+                      </p>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
               <motion.div 
-                className="relative rounded-lg overflow-hidden aspect-[4/5]"
+                className="relative rounded-lg overflow-hidden aspect-[4/5] cursor-pointer"
                 onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
                 style={transformStyle}
+                onClick={handleClick}
+                animate={controls}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 30
+                }}
               >
                 {/* Profile image with premium aesthetic */}
                 <div className="relative w-full h-full glass-card">
@@ -87,14 +177,22 @@ const AboutSection = () => {
                          boxShadow: `0 0 20px rgba(255,255,255,${0.1 + (Math.abs(mousePosition.x) + Math.abs(mousePosition.y)) * 0.1})`
                        }} 
                   />
+
+                  {/* Edge lighting effect */}
+                  <div className="absolute inset-0 rounded-lg overflow-hidden pointer-events-none">
+                    <div className="absolute inset-0 border border-white/20 rounded-lg" 
+                         style={{
+                           boxShadow: `
+                             inset 0 0 15px rgba(255,255,255,0.1),
+                             inset 0 0 30px rgba(255,255,255,0.05),
+                             0 0 15px rgba(255,255,255,0.1),
+                             0 0 30px rgba(255,255,255,0.05)
+                           `
+                         }}
+                    />
+                  </div>
                 </div>
               </motion.div>
-
-              <div className="mt-8 flex justify-center">
-                <Button variant="outline" className="rounded-full border-white/20 hover:bg-white/10 px-8 py-6 font-medium tracking-wide text-sm hover:shadow-lg hover:shadow-white/50 hover:text-white" onClick={() => window.open('https://www.overleaf.com/read/ttjwbtkcfmmd#a64414', '_blank')}>
-                  Download Resume
-                </Button>
-              </div>
             </motion.div>
           
             {/* Right column - content */}
@@ -107,18 +205,22 @@ const AboutSection = () => {
                   <div className="w-full text-center">
                     <span className="inline-block rtx-text text-white">I try to make things that</span>
                   </div>
-                  <div className="w-full text-center overflow-visible">
-                    {showWorkText && (
-                      <motion.span 
-                        className={`inline-block rtx-text text-white ${isZapping ? 'zap-text glitch-text' : ''} ${!showWorkText ? 'fall-text' : ''}`}
-                        animate={isZapping ? {
-                          scale: [1, 1.1, 1],
-                          transition: { duration: 0.3, repeat: 2 }
-                        } : {}}
+                  <div className="w-full text-center overflow-hidden h-[1.5em] relative flex items-center justify-center">
+                    <AnimatePresence mode="popLayout" initial={false}>
+                      <motion.span
+                        key={currentWordIndex}
+                        initial={{ y: 50, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        exit={{ y: -50, opacity: 0 }}
+                        transition={{
+                          y: { type: "spring", stiffness: 300, damping: 30 },
+                          opacity: { duration: 0.2 },
+                        }}
+                        className="absolute rtx-text text-white inline-block whitespace-nowrap"
                       >
-                        work.
+                        {ROTATING_WORDS[currentWordIndex]}.
                       </motion.span>
-                    )}
+                    </AnimatePresence>
                   </div>
                 </div>
               </h2>

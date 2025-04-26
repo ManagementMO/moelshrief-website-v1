@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { DownloadIcon } from 'lucide-react';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -130,6 +131,7 @@ const Navbar = () => {
             className="rounded-full text-xs border-white/20 hover:bg-white/10 px-5 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-white/50 hover:text-white"
             onClick={() => window.open('https://www.overleaf.com/read/ttjwbtkcfmmd#a64414', '_blank')}
           >
+            <DownloadIcon className="w-4 h-4 mr-2" />
             Resume
           </Button>
         </div>
@@ -235,6 +237,7 @@ const Navbar = () => {
                     setMobileMenuOpen(false);
                   }}
                 >
+                  <DownloadIcon className="w-4 h-4 mr-2" />
                   Resume
                 </Button>
               </motion.div>

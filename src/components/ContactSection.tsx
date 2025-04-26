@@ -1,5 +1,6 @@
 import { FormEvent, useState } from "react";
 import { FuturisticButton } from "./ui/futuristic-button";
+import { motion } from "framer-motion";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -232,7 +233,37 @@ const ContactSection = () => {
               {/* Availability box */}
               <div className="mt-12 glass-effect p-6 rounded-xl border border-futuristic-purple/20">
                 <div className="flex items-center gap-4">
-                  <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                  <div className="relative">
+                    <motion.div 
+                      className="w-3 h-3 bg-green-500 rounded-full"
+                      animate={{
+                        scale: [1, 1.2, 1],
+                        opacity: [1, 0.8, 1],
+                        boxShadow: [
+                          "0 0 0 0 rgba(34, 197, 94, 0.4)",
+                          "0 0 0 10px rgba(34, 197, 94, 0)",
+                          "0 0 0 0 rgba(34, 197, 94, 0.4)"
+                        ]
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                    />
+                    <motion.div 
+                      className="absolute inset-0 w-3 h-3 bg-green-500 rounded-full"
+                      animate={{
+                        scale: [1, 1.5, 1],
+                        opacity: [0.4, 0, 0.4]
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                    />
+                  </div>
                   <div>
                     <h4 className="font-semibold">Currently Available</h4>
                     <p className="text-sm text-muted-foreground">
