@@ -19,19 +19,27 @@ const Navbar = () => {
       // Track active section for menu highlighting
       const sections = ['home', 'about', 'skills', 'projects', 'experience', 'contact'];
       const scrollPosition = window.scrollY + 100;
-      
-      for (const section of sections) {
+      let found = false;
+      for (let i = 0; i < sections.length; i++) {
+        const section = sections[i];
         const element = document.getElementById(section);
         if (element) {
           const offsetTop = element.offsetTop;
           const offsetHeight = element.offsetHeight;
-          
           if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section);
+            // Treat both 'about' and 'skills' as 'about' for navbar highlight
+            if (section === 'about' || section === 'skills') {
+              setActiveSection('about');
+            } else {
+              setActiveSection(section);
+            }
+            found = true;
             break;
           }
         }
       }
+      // Optionally, if no section is found, fallback to home
+      if (!found) setActiveSection('home');
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -40,10 +48,11 @@ const Navbar = () => {
     };
   }, []);
 
+  // Use section IDs for both label and logic
   const navLinks = [
-    { name: "About", href: "/about" },
-    { name: "Projects", href: "/projects" },
-    { name: "Contact", href: "/contact" },
+    { id: "about", label: "About" },
+    { id: "projects", label: "Projects" },
+    { id: "contact", label: "Contact" },
   ];
 
   return (
@@ -77,24 +86,24 @@ const Navbar = () => {
         <div className="hidden md:flex items-center space-x-4">
           <ul className="flex space-x-8 mr-6">
             {navLinks.map((link) => (
-              <li key={link.name} className="relative">
+              <li key={link.id} className="relative">
                 <a
-                  href={link.href}
+                  href={`#${link.id}`}
                   className={cn(
                     "text-sm font-light tracking-wide transition-all duration-300",
-                    activeSection === link.name 
+                    activeSection === link.id 
                       ? "text-white" 
                       : "text-white/50 hover:text-white/80 hover:scale-105"
                   )}
                   onClick={(e) => {
                     e.preventDefault();
-                    document.getElementById(link.name.toLowerCase())?.scrollIntoView({ behavior: 'smooth' });
+                    document.getElementById(link.id)?.scrollIntoView({ behavior: 'smooth' });
                   }}
                 >
-                  {link.name}
-                  {activeSection === link.name.toLowerCase() && (
+                  {link.label}
+                  {activeSection === link.id && (
                     <motion.div
-                      className="absolute -bottom-1 left-0 w-full h-[1px] bg-gradient-to-r from-blue-400 to-purple-500"
+                      className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 rounded-full"
                       layoutId="navIndicator"
                       transition={{ type: "spring", duration: 0.5 }}
                     />
@@ -158,20 +167,20 @@ const Navbar = () => {
             <div className="container mx-auto px-8 py-12 flex flex-col items-center">
               {navLinks.map((link, index) => (
                 <motion.a
-                  key={link.name}
-                  href={link.href}
+                  key={link.id}
+                  href={`#${link.id}`}
                   className="text-3xl font-light my-4 text-white/70 hover:text-white transition-all duration-300 hover:scale-105"
                   onClick={(e) => {
                     e.preventDefault();
                     setMobileMenuOpen(false);
-                    document.getElementById(link.name.toLowerCase())?.scrollIntoView({ behavior: 'smooth' });
+                    document.getElementById(link.id)?.scrollIntoView({ behavior: 'smooth' });
                   }}
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: -20, opacity: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
                 >
-                  {link.name}
+                  {link.label}
                 </motion.a>
               ))}
               <motion.div
