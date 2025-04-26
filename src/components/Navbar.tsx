@@ -179,12 +179,24 @@ const Navbar = () => {
           >
             {/* X Close Button */}
             <button
-              className="absolute top-6 right-6 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white shadow-lg shadow-white/30 focus:outline-none transition-all duration-200 z-[101]"
-              style={{ fontSize: 28, lineHeight: 1 }}
+              className="absolute top-6 right-6 w-12 h-12 aspect-square rounded-full border border-white/20 bg-white/10 hover:bg-white/20 flex items-center justify-center shadow-lg shadow-white/30 focus:outline-none transition-all duration-200 z-[101]"
               aria-label="Close menu"
               onClick={() => setMobileMenuOpen(false)}
+              style={{ boxShadow: '0 0 16px 2px #a5b4fc, 0 0 32px 4px #818cf8' }}
             >
-              <span className="block" style={{ filter: 'drop-shadow(0 0 8px #fff)' }}>×</span>
+              <span
+                className="text-white text-3xl font-bold select-none"
+                style={{
+                  textShadow:
+                    '0 0 8px #fff, 0 0 16px #fff, 0 0 32px #fff, 0 0 48px #fff',
+                  color: '#fff',
+                  lineHeight: 1,
+                  fontFamily: 'monospace',
+                  filter: 'drop-shadow(0 0 8px #fff)' // fallback for extra glow
+                }}
+              >
+                ×
+              </span>
             </button>
             <div className="flex flex-col items-center w-full mt-12">
               {navLinks.map((link, index) => (
