@@ -8,6 +8,18 @@ const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
 
+  // Lock scroll on mobile menu open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 20) {
@@ -124,7 +136,8 @@ const Navbar = () => {
 
         {/* Mobile Menu Button */}
         <button 
-          className="md:hidden text-white w-8 h-8 relative focus:outline-none"
+          className="md:hidden text-white w-12 h-12 relative focus:outline-none z-50 active:scale-95"
+          style={{ touchAction: 'manipulation' }}
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle menu"
         >
@@ -139,7 +152,7 @@ const Navbar = () => {
             <span
               aria-hidden="true"
               className={cn(
-                "block absolute h-0.5 bg-white transform transition duration-300 ease-in-out",
+                "block absolute h-0.5 w-8 bg-white transform transition duration-300 ease-in-out",
                 mobileMenuOpen ? "opacity-0" : "w-8"
               )}
             />
@@ -169,11 +182,14 @@ const Navbar = () => {
                 <motion.a
                   key={link.id}
                   href={`#${link.id}`}
-                  className="text-3xl font-light my-4 text-white/70 hover:text-white transition-all duration-300 hover:scale-105"
+                  className="text-3xl font-light my-6 text-white/70 hover:text-white transition-all duration-300 hover:scale-105 px-6 py-4 block rounded-lg"
+                  style={{ minHeight: 56, minWidth: 120, textAlign: 'center' }}
                   onClick={(e) => {
                     e.preventDefault();
                     setMobileMenuOpen(false);
-                    document.getElementById(link.id)?.scrollIntoView({ behavior: 'smooth' });
+                    setTimeout(() => {
+                      document.getElementById(link.id)?.scrollIntoView({ behavior: 'smooth' });
+                    }, 100);
                   }}
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
