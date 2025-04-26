@@ -171,13 +171,22 @@ const Navbar = () => {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            className="md:hidden fixed inset-0 bg-black/95 backdrop-blur-md z-50 flex flex-col items-center justify-center w-full h-full overflow-y-auto p-8"
+            className="md:hidden fixed inset-0 top-0 left-0 w-screen h-screen bg-black/95 backdrop-blur-md z-[100] flex flex-col justify-center items-center overflow-y-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="flex flex-col items-center w-full">
+            {/* X Close Button */}
+            <button
+              className="absolute top-6 right-6 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white shadow-lg shadow-white/30 focus:outline-none transition-all duration-200 z-[101]"
+              style={{ fontSize: 28, lineHeight: 1 }}
+              aria-label="Close menu"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <span className="block" style={{ filter: 'drop-shadow(0 0 8px #fff)' }}>×</span>
+            </button>
+            <div className="flex flex-col items-center w-full mt-12">
               {navLinks.map((link, index) => (
                 <motion.a
                   key={link.id}
