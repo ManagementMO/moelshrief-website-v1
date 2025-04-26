@@ -179,7 +179,7 @@ const Navbar = () => {
           >
             {/* X Close Button */}
             <button
-              className="absolute top-6 right-6 w-12 h-12 aspect-square rounded-full border border-white/20 bg-white/10 hover:bg-white/20 flex items-center justify-center shadow-lg shadow-white/30 focus:outline-none transition-all duration-200 z-[101]"
+              className="absolute top-6 right-6 w-12 h-12 aspect-square rounded-full border border-white/20 bg-black/80 hover:bg-white/20 flex items-center justify-center shadow-lg shadow-white/30 focus:outline-none transition-all duration-200 z-[200]"
               aria-label="Close menu"
               onClick={() => setMobileMenuOpen(false)}
               style={{ boxShadow: '0 0 16px 2px #fff, 0 0 32px 4px #fff' }}
