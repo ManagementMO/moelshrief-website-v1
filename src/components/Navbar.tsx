@@ -182,17 +182,17 @@ const Navbar = () => {
               className="absolute top-6 right-6 w-12 h-12 aspect-square rounded-full border border-white/20 bg-white/10 hover:bg-white/20 flex items-center justify-center shadow-lg shadow-white/30 focus:outline-none transition-all duration-200 z-[101]"
               aria-label="Close menu"
               onClick={() => setMobileMenuOpen(false)}
-              style={{ boxShadow: '0 0 16px 2px #a5b4fc, 0 0 32px 4px #818cf8' }}
+              style={{ boxShadow: '0 0 16px 2px #fff, 0 0 32px 4px #fff' }}
             >
               <span
-                className="text-white text-3xl font-bold select-none"
+                className="text-white text-3xl font-bold select-none flex items-center justify-center w-full h-full"
                 style={{
                   textShadow:
                     '0 0 8px #fff, 0 0 16px #fff, 0 0 32px #fff, 0 0 48px #fff',
                   color: '#fff',
                   lineHeight: 1,
                   fontFamily: 'monospace',
-                  filter: 'drop-shadow(0 0 8px #fff)' // fallback for extra glow
+                  filter: 'drop-shadow(0 0 8px #fff)'
                 }}
               >
                 ×
